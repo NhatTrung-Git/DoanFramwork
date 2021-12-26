@@ -13,6 +13,7 @@ namespace Csharp_Project.Models
         private int payment_id;
         private string order_total;
         private string order_status;
+        private string order_address;
         private DateTime created_at;
         private DateTime updated_at;
 
@@ -22,6 +23,7 @@ namespace Csharp_Project.Models
         public int Payment_id { get => payment_id; set => payment_id = value; }
         public string Order_total { get => order_total; set => order_total = value; }
         public string Order_status { get => order_status; set => order_status = value; }
+        public string Order_address { get => order_address; set => order_address = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
 
@@ -29,7 +31,7 @@ namespace Csharp_Project.Models
         {
         }
 
-        public tbl_order(long order_id, int customer_id, int shipping_id, int payment_id, string order_total, string order_status, DateTime created_at, DateTime updated_at)
+        public tbl_order(long order_id, int customer_id, int shipping_id, int payment_id, string order_total, string order_status, string order_address, DateTime created_at, DateTime updated_at)
         {
             this.order_id = order_id;
             this.customer_id = customer_id;
@@ -37,6 +39,7 @@ namespace Csharp_Project.Models
             this.payment_id = payment_id;
             this.order_total = order_total;
             this.order_status = order_status;
+            this.order_address = order_address;
             this.created_at = created_at;
             this.updated_at = updated_at;
         }

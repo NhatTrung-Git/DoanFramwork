@@ -36,14 +36,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\tbl_shipping\" />
+    <Folder Include="Views\tbl_brand\" />
     <Folder Include="Views\tbl_product\" />
+    <Folder Include="Views\tbl_shipping\" />
     <Folder Include="Views\tbl_payment\" />
     <Folder Include="Views\tbl_order_details\" />
     <Folder Include="Views\tbl_order\" />
     <Folder Include="Views\tbl_customers\" />
     <Folder Include="Views\tbl_category_product\" />
-    <Folder Include="Views\tbl_brand\" />
     <Folder Include="Views\tbl_admin\" />
     <Folder Include="Views\password_resets\" />
   </ItemGroup>

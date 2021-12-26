@@ -1,0 +1,591 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Quản lý tài khoản nhân viên </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel='shortcut icon' href='https://img.icons8.com/fluency/100/000000/music-band.png'/> -->
+    <link rel="stylesheet" href="~/css/CusList.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <script src="https://kit.fontawesome.com/610ab90504.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <!-- Begin nav -->
+            <ul id="nav">
+                <li><a href="#">Quản lí tài khoản</a></li>
+                <li><a href="#">Quản lí sản phẩm</a></li>
+                <li><a href="#">Quản lí đơn hàng</a></li>
+                <li><a href="#">Quản lí khuyến mãi</a></li>
+                <li><a href="#">Quản lí nhà cung cấp</a></li>
+                <li><a href="#">Thống kê</a></li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </div>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <div class="center-outer">
+                        <div class="center-inner">
+                            <div class="bubbles">
+                                <h1>Quản lí nhân viên</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content__search">
+                        <input type="text" placeholder="Nhập vào đây">
+                        <button id="search">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table table-responsive-xl">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th>Email</th>
+                                    <th>Họ tên</th>
+                                    <th>Trạng thái</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr class="alert" role="alert">
+                                    <td>
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            <input type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+                                        <div class="img" style="background-image: url(./person_1.jpg);"></div>
+                                        <div class="pl-3 email">
+                                            <span>markotto@email.com</span>
+                                            <span>Added: 01/03/2020</span>
+                                        </div>
+                                    </td>
+                                    <td>Markotto89</td>
+                                    <td class="status"><span class="active">Block</span></td>
+                                    <td>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="alert" role="alert">
+                                    <td>
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+                                        <div class="img" style="background-image: url(./person_2.jpg);"></div>
+                                        <div class="pl-3 email">
+                                            <span>jacobthornton@email.com</span>
+                                            <span>Added: 01/03/2020</span>
+                                        </div>
+                                    </td>
+                                    <td>Jacobthornton</td>
+                                    <td class="status"><span class="block">Block</span></td>
+                                    <td>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="alert" role="alert">
+                                    <td>
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+                                        <div class="img" style="background-image: url(./person_3.jpg);"></div>
+                                        <div class="pl-3 email">
+                                            <span>larrybird@email.com</span>
+                                            <span>Added: 01/03/2020</span>
+                                        </div>
+                                    </td>
+                                    <td>Larry_bird</td>
+                                    <td class="status"><span class="block">Block</span></td>
+                                    <td>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="alert" role="alert">
+                                    <td>
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="d-flex align-items-center">
+                                        <div class="img" style="background-image: url(./person_4.jpg);"></div>
+                                        <div class="pl-3 email">
+                                            <span>johndoe@email.com</span>
+                                            <span>Added: 01/03/2020</span>
+                                        </div>
+                                    </td>
+                                    <td>Johndoe1990</td>
+                                    <td class="status"><span class="active">Active</span></td>
+                                    <td>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="alert" role="alert">
+                                    <td class="border-bottom-0">
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="d-flex align-items-center border-bottom-0">
+                                        <div class="img" style="background-image: url(./person_1.jpg);"></div>
+                                        <div class="pl-3 email">
+                                            <span>garybird@email.com</span>
+                                            <span>Added: 01/03/2020</span>
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">Garybird_2020</td>
+                                    <td class="status border-bottom-0"><span class="active">Active</span></td>
+                                    <td class="border-bottom-0">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+                                        </button>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="no-result">Không có kết quả tìm kiếm</div>
+    <div class="demo">
+        <nav class="pagination-outer" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a id="Prev" class="page-link disabled" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <div class="page-number">
+                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" ><a class="page-link" href="#">2</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li> -->
+                </div>
+                <li class="page-item">
+                    <a id="Next" class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+
+</html>
+<!-- <tr class="alert" role="alert">
+    <td class="border-bottom-0">
+        <label class="checkbox-wrap checkbox-primary">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+    </td>
+    <td class="d-flex align-items-center border-bottom-0">
+        <div class="img" style="background-image: url(./person_1.jpg);"></div>
+        <div class="pl-3 email">
+            <span>garybird@email.com</span>
+            <span>Added: 01/03/2020</span>
+        </div>
+    </td>
+    <td class="border-bottom-0">Garybird_2020</td>
+    <td class="status border-bottom-0"><span class="active">Active</span></td>
+    <td class="border-bottom-0">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+        </button>
+    </td>
+</tr>  -->
+<script>
+    const products = @Html.Raw(Json.Serialize(ViewData["Lists"]));
+
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    const searchText = $('.content__search input');
+    let currentPage = 1;
+    let perPage = 5;
+    let start = 0;
+    let end = perPage;
+    let productArr = [];
+    productArr = products;
+    const nextBtn = $("#Next")
+    const prevBtn = $("#Prev")
+    const pageNumber = $(".page-number")
+    let totalPages = Math.ceil(productArr.length / perPage)
+    function getCurrentPage(currentPage) {
+        start = (currentPage - 1) * perPage;
+        end = currentPage * perPage
+        totalPages = Math.ceil(productArr.length / perPage)
+    }
+    function initRender(productAr, totalPage) {
+        renderProduct(productAr);
+        renderListPage(totalPage);
+    }
+    function renderProduct(productArr) {
+        let html = '';
+        const content = productArr.map((item, index) => {
+            if (index >= start && index < end) {
+                html += ` <tr class="alert" role="alert">
+                            <td class="border-bottom-0">
+                                <label class="checkbox-wrap checkbox-primary">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td class="d-flex align-items-center border-bottom-0">
+                                <div class="img" style="background-image: url(${item.image});"></div>
+                                <div class="pl-3 email">
+                                    <span>${item.email}</span>
+                                    <span>Added: ${item.time}</span>
+                                </div>
+                            </td>
+                            <td class="border-bottom-0">${item.name}</td>
+                            <td class="status border-bottom-0"><span class="${item.status}"">${item.state}</span></td>
+                            <td class="border-bottom-0">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true" id="${item.id}"><i id="${item.status}" class="fas fa-lock"> </i></span>
+                                </button>
+                            </td>
+                        </tr>`;
+                return html;
+            }
+        });
+        document.querySelector('.table tbody').innerHTML = html
+    }
+    initRender(productArr, totalPages)
+    changePage()
+    function renderListPage(totalPages) {
+        let html = '';
+        html += `<li class="page-item active"><a class="page-link ">${1}</a></li>`
+        for (let i = 2; i <= totalPages; i++) {
+            html += `<li class="page-item"><a class="page-link" >${i}</a></li>`
+        }
+        pageNumber.innerHTML = html
+    }
+    function changePage() {
+        const currentPages = $$('.page-number li')
+        for (let i = 0; i < currentPages.length; i++) {
+            currentPages[i].addEventListener('click', (e) => {
+                const value = i + 1;
+                currentPage = value;
+                let numberPage = $$(".page-number li")
+                for (let j of numberPage) {
+                    if (j.classList.contains("active")) {
+                        j.classList.remove("active");
+                    }
+                }
+                currentPages[i].classList.add('active')
+                if (currentPage > 1 && currentPage < totalPages) {
+                    prevBtn.classList.remove("disabled")
+                    nextBtn.classList.remove("disabled")
+                }
+                if (currentPage == 1) {
+                    prevBtn.classList.add("disabled")
+                    nextBtn.classList.remove("disabled")
+                }
+                if (currentPage == totalPages) {
+                    nextBtn.classList.add("disabled")
+                    prevBtn.classList.remove("disabled")
+                }
+                // currentPages[i].classList.add("active")
+                getCurrentPage(currentPage)
+                renderProduct(productArr)
+                changeState()
+            })
+        }
+    }
+
+    nextBtn.addEventListener('click', (e) => {
+        currentPage++;
+        if (currentPage > totalPages) {
+            currentPage = totalPages
+        }
+        if (currentPage == totalPages) {
+            nextBtn.classList.add("disabled")
+        }
+        prevBtn.classList.remove("disabled")
+        let numberPage = $$(".page-number li")
+        for (let j of numberPage) {
+            if (j.classList.contains("active")) {
+                j.classList.remove("active");
+            }
+        }
+        numberPage[currentPage - 1].classList.add('active')
+        getCurrentPage(currentPage)
+        renderProduct(productArr)
+        changeState()
+    })
+    prevBtn.addEventListener('click', (e) => {
+        console.log(currentPage)
+        currentPage--;
+        if (currentPage <= 1) {
+            currentPage = 1
+        }
+        if (currentPage == 1) {
+            prevBtn.classList.add("disabled")
+        }
+        nextBtn.classList.remove("disabled")
+        let numberPage = $$(".page-number li")
+        for (let j of numberPage) {
+            if (j.classList.contains("active")) {
+                j.classList.remove("active");
+            }
+        }
+        numberPage[currentPage - 1].classList.add('active')
+        getCurrentPage(currentPage)
+        renderProduct(productArr)
+        changeState()
+    })
+</script>
+<!-- xử lí search -->
+<script>
+    let idPage = 1;
+    const searchBtn = $('#search');
+    const noResult = $('.no-result')
+    const tableWrap = $('.table-wrap')
+    console.log(tableWrap)
+    console.log(noResult)
+    searchBtn.addEventListener('click', () => {
+        idPage = 1;
+        productArr = [];
+        products.forEach((item, index) => {
+            if (item.name.toLocaleLowerCase().indexOf(searchText.value.toLocaleLowerCase()) != -1 || item.email.toLocaleLowerCase().indexOf(searchText.value.toLocaleLowerCase()) != -1 || item.state.toLocaleLowerCase().indexOf(searchText.value.toLocaleLowerCase()) != -1 || item.time.toLocaleLowerCase().indexOf(searchText.value.toLocaleLowerCase()) != -1) {
+                productArr.push(item);
+            }
+
+        });
+        if (productArr.length === 0) {
+            console.log(productArr)
+            noResult.style.display = 'block';
+            tableWrap.classList.remove("table-wrap")
+        } else {
+            console.log(productArr)
+            noResult.style.display = 'none';
+            tableWrap.classList.add("table-wrap")
+        }
+        getCurrentPage(idPage)
+        initRender(productArr, totalPages)
+        changePage()
+        changeState()
+        if (totalPages <= 1) {
+            prevBtn.classList.add('disabled');
+            nextBtn.classList.add('disabled');
+        } else {
+            nextBtn.classList.remove('disabled');
+        }
+    })
+    searchText.addEventListener("keyup", (event) => {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            searchBtn.click();
+        }
+    });
+
+</script>
+<!-- Xử lí mobile menu -->
+<script>
+    var header = document.querySelector('#header')
+    var menuBTN = document.querySelector('#header .menu-btn');
+    var headerHeight = header.clientHeight;
+
+    // Xử lí mở đóng menu
+    menuBTN.onclick = function () {
+        var isClosed = header.clientHeight === headerHeight;
+        if (isClosed) {
+            header.style.height = "auto";
+
+
+        } else {
+            header.style.height = null;
+
+        }
+    }
+    // Xử lí click vào menu item rồi đóng menu
+    var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+    var menuItemsLength = menuItems.length
+
+    for (var i = 0; i < menuItemsLength; i++) {
+        var menuItem = menuItems[i]
+        menuItem.onclick = function (e) {
+
+            var isParent = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav')
+            // var isOpen=this.nextElementSibling && this.nextElementSibling.classList.contains('subnav') && document.querySelector('.subnav').position
+            if (isParent) {
+                // var isOpened=document.querySelector(".subnav").style.position;
+                // if(isOpened=="initial"){
+                // document.querySelector(".subnav").style.position = "absolute";
+                // }else{
+                //     document.querySelector(".subnav").style.position = "initial";
+                // }
+                e.preventDefault()
+            } else {
+                header.style.height = null;
+            }
+        }
+    }
+</script>
+<!-- <tr class="alert" role="alert">
+    <td class="border-bottom-0">
+        <label class="checkbox-wrap checkbox-primary">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+    </td>
+    <td class="d-flex align-items-center border-bottom-0">
+        <div class="img" style="background-image: url(./person_1.jpg);"></div>
+        <div class="pl-3 email">
+            <span>garybird@email.com</span>
+            <span>Added: 01/03/2020</span>
+        </div>
+    </td>
+    <td class="border-bottom-0">Garybird_2020</td>
+    <td class="status border-bottom-0"><span class="active">Active</span></td>
+    <td class="border-bottom-0">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i id="block" class="fas fa-unlock"></i></span>
+        </button>
+    </td>
+</tr>  -->
+<!-- Xử lí button click đóng/mở khóa -->
+<script>
+    function changeState() {
+        var blockBtn = $$('.close');
+        var stt = $$('.status');
+        for (var i of stt) {
+            if (i.childNodes[0].className == 'block') {
+                i.nextElementSibling.childNodes[1].lastElementChild.firstChild.classList.remove("fa-unlock")
+                i.nextElementSibling.childNodes[1].lastElementChild.firstChild.classList.add("fa-lock")
+            } else {
+                i.nextElementSibling.childNodes[1].lastElementChild.firstChild.classList.remove("fa-lock")
+                i.nextElementSibling.childNodes[1].lastElementChild.firstChild.classList.add("fa-unlock")
+            }
+        }
+        for (var i of blockBtn) {
+            i.addEventListener("click", function (e) {
+                var th = this
+                e.preventDefault()
+                this.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                this.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                console.dir(this.offsetParent.parentElement.children[4].children[0].children[0].classList.contains("fa-unlock") || this.offsetParent.parentElement.children[4].children[0].children[0].classList.contains("fa-lock"))
+                if (this.offsetParent.parentElement.children[4].children[0].children[0].classList.contains("fa-unlock") || this.offsetParent.parentElement.children[4].children[0].children[0].classList.contains("fa-lock")) {
+                    this.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                    this.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                }
+                if (e.target.classList[1] == "fa-lock") {
+                    jQuery.ajax({
+                        url: '/tbl_shipping/CapNhatShipping',
+                        dataType: "json",
+                        type: "POST",
+                        data: {
+                            shipping_id: e.target.parentElement.id,
+                            shipping_notes: "Active",
+                        },
+                        success: function (data) {
+                            if (data != 0) {
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                                e.target.classList.remove("fa-lock")
+                                e.target.classList.add("fa-unlock")
+                                th.offsetParent.parentElement.children[3].lastElementChild.classList.remove("block")
+                                th.offsetParent.parentElement.children[3].lastElementChild.classList.add("active")
+                                th.offsetParent.parentElement.children[3].lastElementChild.innerText = "Active"
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                            }
+                        },
+                    });
+
+                } else {
+                    jQuery.ajax({
+                        url: '/tbl_shipping/CapNhatShipping',
+                        dataType: "json",
+                        type: "POST",
+                        data: {
+                            shipping_id: e.target.parentElement.id,
+                            shipping_notes: "Block",
+                        },
+                        success: function (data) {
+                            if (data != 0) {
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                                e.target.classList.remove("fa-unlock")
+                                e.target.classList.add("fa-lock")
+                                th.offsetParent.parentElement.children[3].lastElementChild.classList.remove("active")
+                                th.offsetParent.parentElement.children[3].lastElementChild.classList.add("block")
+                                th.offsetParent.parentElement.children[3].lastElementChild.innerText = "Block"
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-lock")
+                                th.offsetParent.parentElement.children[4].children[0].children[0].classList.remove("fa-unlock")
+                            }
+                        },
+                    });
+                }
+            })
+        }
+    }
+    changeState()
+</script>
+<!-- Hiệu ứng nổi bọt -->
+<script>
+    jQuery(document).ready(function ($) {
+        var bArray = [];
+        var sArray = [4, 6, 8, 10];
+        for (var i = 0; i < $('.bubbles').width(); i++) {
+            bArray.push(i);
+        }
+        function randomValue(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+        setInterval(function () {
+            var size = randomValue(sArray);
+            $('.bubbles').append('<div class="individual-bubble" style="left: ' + randomValue(bArray) + 'px; width: ' + size + 'px; height:' + size + 'px;"></div>');
+            $('.individual-bubble').animate({
+                'bottom': '100%',
+                'opacity': '-=0.7'
+            }, 3000, function () {
+                $(this).remove()
+            }
+            );
+
+        }, 350);
+
+    });
+</script>

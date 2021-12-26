@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Grqjbzbf5CnXtiCy/FyiFStYKgY5QXBSTkHvfbsqcrspXTKqT7QbNpW0UbnsjfJNBkoJVHj1AThIAhm7PvfMtA==",
+  "dgSpecHash": "fShX9KuPqcoQe0IcGecsjp4tdF/YpcSjCXSFZ4SfptPcWm0X/BNpDIb2Uo78OQGQDHIZA0m8XIdBV6qw2bIkGA==",
   "success": true,
-  "projectFilePath": "D:\\Solfware\\C#Project\\Csharp_Project\\Csharp_Project.csproj",
+  "projectFilePath": "D:\\Solfware\\C#Project\\Doan_Framework\\Csharp_Project\\Csharp_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Trung\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\Trung\\.nuget\\packages\\mysql.data\\6.10.9\\mysql.data.6.10.9.nupkg.sha512",

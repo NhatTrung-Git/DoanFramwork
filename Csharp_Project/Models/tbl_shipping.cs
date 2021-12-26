@@ -9,7 +9,7 @@ namespace Csharp_Project.Models
     {
         private int shipping_id;
         private string shipping_name;
-        private string shipping_address;
+        private string shipping_img;
         private string shipping_phone;
         private string shipping_email;
         private string shipping_notes;
@@ -18,7 +18,7 @@ namespace Csharp_Project.Models
 
         public int Shipping_id { get => shipping_id; set => shipping_id = value; }
         public string Shipping_name { get => shipping_name; set => shipping_name = value; }
-        public string Shipping_address { get => shipping_address; set => shipping_address = value; }
+        public string Shipping_img { get => shipping_img; set => shipping_img = value; }
         public string Shipping_phone { get => shipping_phone; set => shipping_phone = value; }
         public string Shipping_email { get => shipping_email; set => shipping_email = value; }
         public string Shipping_notes { get => shipping_notes; set => shipping_notes = value; }
@@ -29,11 +29,11 @@ namespace Csharp_Project.Models
         {
         }
 
-        public tbl_shipping(int shipping_id, string shipping_name, string shipping_address, string shipping_phone, string shipping_email, string shipping_notes, DateTime created_at, DateTime updated_at)
+        public tbl_shipping(int shipping_id, string shipping_name, string shipping_img, string shipping_phone, string shipping_email, string shipping_notes, DateTime created_at, DateTime updated_at)
         {
             this.shipping_id = shipping_id;
             this.shipping_name = shipping_name;
-            this.shipping_address = shipping_address;
+            this.shipping_img = shipping_img;
             this.shipping_phone = shipping_phone;
             this.shipping_email = shipping_email;
             this.shipping_notes = shipping_notes;

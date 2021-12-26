@@ -10,7 +10,7 @@ namespace Csharp_Project.Models
         private long order_details_id;
         private int order_id;
         private int product_id;
-        private string product_name;
+        private string address;
         private string product_price;
         private int product_sales_quantity;
         private DateTime created_at;
@@ -19,7 +19,7 @@ namespace Csharp_Project.Models
         public long Order_details_id { get => order_details_id; set => order_details_id = value; }
         public int Order_id { get => order_id; set => order_id = value; }
         public int Product_id { get => product_id; set => product_id = value; }
-        public string Product_name { get => product_name; set => product_name = value; }
+        public string Address { get => address; set => address = value; }
         public string Product_price { get => product_price; set => product_price = value; }
         public int Product_sales_quantity { get => product_sales_quantity; set => product_sales_quantity = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
@@ -29,12 +29,12 @@ namespace Csharp_Project.Models
         {
         }
 
-        public tbl_order_details(long order_details_id, int order_id, int product_id, string product_name, string product_price, int product_sales_quantity, DateTime created_at, DateTime updated_at)
+        public tbl_order_details(long order_details_id, int order_id, int product_id, string address, string product_price, int product_sales_quantity, DateTime created_at, DateTime updated_at)
         {
             this.order_details_id = order_details_id;
             this.order_id = order_id;
             this.product_id = product_id;
-            this.product_name = product_name;
+            this.address = address;
             this.product_price = product_price;
             this.product_sales_quantity = product_sales_quantity;
             this.created_at = created_at;
