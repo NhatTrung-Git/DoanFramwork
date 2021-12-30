@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Kết quả đăng nhập";
+}
+@{
+
+
+    if (@HttpContextAccessor.HttpContext.Session.GetInt32("_ID") != null)
+    {
+        <p>Đây là trang @HttpContextAccessor.HttpContext.Session.GetString("_Type")</p>
+        <p>Xin chào @HttpContextAccessor.HttpContext.Session.GetString("_Name")</p>
+        <p>ID:@HttpContextAccessor.HttpContext.Session.GetInt32("_ID")</p>
+        <a href="Logout">Logout</a>
+    }
+    else
+    {
+        <p>Bạn chưa đăng nhập hãy đăng nhập</p>
+        <a href="login">Login</a>
+        <p>@ViewData["thongbao"]</p>
+    }
+
+
+
+}

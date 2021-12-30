@@ -1,0 +1,247 @@
+﻿/* định dạng default */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* class color-white */
+.color-white {
+    color: #FFFFFF !important;
+}
+
+.form {
+    display: inline-block;
+    background-color: #B4EDFF;
+}
+/* html */
+html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    background-color: #B4EDFF;
+}
+/* form lớn */
+.main {
+    position: relative;
+    width: 1157px;
+    height: 437px;
+    margin: 50px auto;
+}
+/* form lớn */
+.form-group {
+    margin-top: 18px;
+}
+/* từng input form */
+.form-control {
+    margin-left: 10px;
+    height: 45px;
+    width: 450px;
+    outline: none;
+    background: #FFFFFF;
+    border: #FFFFFF;
+    padding: 8px 12px;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+/* div image */
+.img {
+    position: absolute;
+    display: inline-block;
+    margin-left: 2%;
+}
+/* thẻ img */
+.img-responsive {
+    width: 642px;
+    height: 438px;
+}
+/* chữ đăng kí */
+.register {
+    text-align: right;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 18px;
+}
+/* css nút */
+.btn {
+    position: relative;
+    display: block;
+    background: #000000;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-size: 30px;
+    line-height: 35px;
+    width: 300px;
+    height: 50px;
+    margin-left: 80px;
+    margin-top: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+    /* rê vào nút có hiện con trỏ */
+    .btn:hover {
+        cursor: pointer;
+    }
+/* css text Hoặc đăng ký với */
+.text {
+    margin-left: 80px;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.5);
+}
+/* css icon  */
+.icon {
+    position: absolute;
+    background: #000000;
+    width: 30px;
+    height: 30px;
+    border-radius: 90%;
+    top: 18%;
+    left: 7px;
+}
+
+#show, #show1 {
+    display: none;
+}
+
+.eyes {
+    position: absolute;
+    transform: translate(0,-50%);
+    cursor: pointer;
+    margin-top: 23px;
+    margin-left: -40px;
+}
+
+.fa-eye-slash.pass, .fa-eye.pass {
+    font-size: 25px;
+}
+
+.fa-eye-slash.confirmpass, .fa-eye.confirmpass {
+    font-size: 25px;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+    display: block;
+    margin-left: 18px;
+    margin-top: 8px;
+}
+.modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-size: 20px;
+}
+
+.modal-container {
+    background-color: #fff;
+    width: 900px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    position: relative;
+    animation: modalFadeIn ease 0.5s;
+}
+
+.okbtn:hover {
+    opacity: 1;
+}
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+    .okbtn {
+        width: 100%;
+    }
+}
+
+.okbtn {
+    width: 100%;
+    color: black;
+    opacity: 0.9;
+    background-color: #ccc;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    background: #23bd5a;
+    font-weight: 800;
+}
+
+.modal-header-icon {
+    margin-right: 16px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0px;
+    padding: 9.8px 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+    .modal-close:hover {
+        background-color: #ccc
+    }
+
+.modal-body {
+    padding: 16px;
+    margin: auto;
+}
+
+.modal-label {
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.modal-button {
+    background-color: #009688;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+    border: none;
+}
+    .modal-button:hover {
+        background-color: #ccc;
+        color: #000;
+    }
+/* Add padding and center-align text to the container */
+.container-1 {
+    padding: 16px;
+    text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 50% !important; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.open {
+    display: flex !important;
+}
+ 
