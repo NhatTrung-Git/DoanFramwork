@@ -19,6 +19,16 @@ namespace Csharp_Project.Controllers
             ViewData["Lists"] = context.GetTbl_Shippings();
             return View();
         }
+        public JsonResult ThemShipping(string shipping_name, string shipping_email, string shipping_password, string shipping_phone, string shipping_img)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(Csharp_Project.Models.StoreContext)) as StoreContext;
+            int count = context.InsertShipping(shipping_name, shipping_email, shipping_password, shipping_phone, shipping_img);
+            if (count > 0)
+                return Json(1);
+            if (count == -1)
+                return Json(-1);
+            return Json(0);
+        }
         public JsonResult CapNhatShipping(int shipping_id, string shipping_notes)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(Csharp_Project.Models.StoreContext)) as StoreContext;

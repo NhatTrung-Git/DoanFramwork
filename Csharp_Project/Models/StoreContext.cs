@@ -227,6 +227,35 @@ namespace Csharp_Project.Models
             }
             return list;
         }
+        public int InsertShipping(string shipping_name, string shipping_email, string shipping_password, string shipping_phone, string shipping_img)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "SELECT shipping_id FROM `tbl_shipping` WHERE shipping_email = @mail";
+                string str1 = "INSERT INTO `tbl_shipping`(`shipping_name`, `shipping_img`, `shipping_phone`, `shipping_email`, `shipping_password`, `shipping_notes`, `created_at`, `updated_at`) VALUES (@name,@img,@phone,@email,@pass,@status,@created,@updated)";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("mail", shipping_email);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if(reader.HasRows)
+                    {
+                        return -1;
+                    }
+                    reader.Close();
+                    cmd = new MySqlCommand(str1, conn);
+                    cmd.Parameters.AddWithValue("name", shipping_name);
+                    cmd.Parameters.AddWithValue("img", shipping_img);
+                    cmd.Parameters.AddWithValue("phone", shipping_phone);
+                    cmd.Parameters.AddWithValue("email", shipping_email);
+                    cmd.Parameters.AddWithValue("pass", shipping_password);
+                    cmd.Parameters.AddWithValue("status", "Active");
+                    cmd.Parameters.AddWithValue("created", DateTime.Now);
+                    cmd.Parameters.AddWithValue("updated", null);
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public int UpdateShipping(int shipping_id, string shipping_notes)
         {
             using (MySqlConnection conn = GetConnection())
@@ -264,19 +293,25 @@ namespace Csharp_Project.Models
                             case "Đã hủy đơn":
                                 stt = "block";
                                 break;
+                            default:
+                                stt = "";
+                                break;
                         }
-                        list.Add(new
+                        if(stt.CompareTo("") != 0)
                         {
-                            id = Convert.ToInt32(reader["order_id"]),
-                            time = Convert.ToDateTime(reader["created_at"]).ToString("dd/MM/yyyy"),
-                            email = reader["customer_email"].ToString(),
-                            received = reader["customer_name"].ToString(),
-                            address = reader["order_address"].ToString(),
-                            numberPhone = reader["customer_phone"].ToString(),
-                            cost = reader["order_total"].ToString(),
-                            state = reader["order_status"].ToString(),
-                            status = stt,
-                        });
+                            list.Add(new
+                            {
+                                id = Convert.ToInt32(reader["order_id"]),
+                                time = Convert.ToDateTime(reader["created_at"]).ToString("dd/MM/yyyy"),
+                                email = reader["customer_email"].ToString(),
+                                received = reader["customer_name"].ToString(),
+                                address = reader["order_address"].ToString(),
+                                numberPhone = reader["customer_phone"].ToString(),
+                                cost = reader["order_total"].ToString(),
+                                state = reader["order_status"].ToString(),
+                                status = stt,
+                            });
+                        }    
                     }
                     reader.Close();
                 }

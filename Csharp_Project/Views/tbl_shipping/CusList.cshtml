@@ -1,5 +1,6 @@
 @{
     Layout = null;
+    String msg = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,12 @@
             <!-- Begin nav -->
             <ul id="nav">
                 <li><a href="#">Quản lí tài khoản</a></li>
-                <li><a href="#">Quản lí sản phẩm</a></li>
-                <li><a href="#">Quản lí đơn hàng</a></li>
+                <li><a href="@Url.Action("ProList", "tbl_product")">Quản lí sản phẩm</a></li>
+                <li><a href="@Url.Action("Donhang", "tbl_order")">Quản lí đơn hàng</a></li>
                 <li><a href="#">Quản lí khuyến mãi</a></li>
                 <li><a href="#">Quản lí nhà cung cấp</a></li>
                 <li><a href="#">Thống kê</a></li>
+                <li> <a> LOGOUT </a> </li>
             </ul>
             <div class="menu-btn"><i class="fas fa-bars"></i></div>
         </div>
@@ -65,7 +67,11 @@
                                     <th>Email</th>
                                     <th>Họ tên</th>
                                     <th>Trạng thái</th>
-                                    <th>&nbsp;</th>
+                                    <th>
+                                        <button type="button" class="plus" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fas fa-plus"> </i></span>
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,6 +216,36 @@
             </ul>
         </nav>
     </div>
+    <div id="modal-2" class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-close-buy-ticket"><i class="far fa-times-circle"></i></div>
+            <header class="modal-header">
+                Thêm nhân viên
+            </header>
+            <div class="modal-body">
+                <input id="mnv" type="text" class="modal-input" placeholder="Mã nhân viên" disabled>
+                <input id="tnv" type="text" class="modal-input" placeholder="Tên nhân viên">
+                <input id="env" type="text" id="modal-email" class="modal-input" pattern="@msg" placeholder="Email">
+                <input id="pnv" type="password" class="modal-input" placeholder="Password">
+                <input id="snv" type="text" id="modal-email" class="modal-input" pattern="[0-9]+" placeholder="SĐT">
+                <input id="anv" type="text" id="modal-email" class="modal-input" pattern="(https?:\/\/.*\.(?:png|jpg))" placeholder="URL hình ảnh">
+                <button id="thembtn" class="modal-button"><i class="fas fa-plus-circle"></i> Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-3" class="modal js-modal">
+        <form class="modal-content">
+            <div class="container-1">
+                <h1> Thông báo </h1>
+                <p id="thongbao-modal"> </p>
+                <div class="clearfix">
+                    <button id="thongbao-btn" type="button" class="okbtn">OK</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </body>
 
 </html>
@@ -588,4 +624,98 @@
         }, 350);
 
     });
+</script>
+<!-- modal trong nút Thêm sản phẩm -->
+<script>
+    const addBtn = $(".fa-plus")
+    const modal2 = $('#modal-2')
+    const modalContainer1 = $('.js-modal-container')
+    const closeBtn1 = $(".js-close-buy-ticket")
+    $("#mnv").value = products[products.length - 1].id + 1
+    addBtn.addEventListener("click", function () {
+        modal2.classList.add('open')
+    })
+    closeBtn1.addEventListener("click", function () {
+        modal2.classList.remove('open')
+    })
+    modalContainer1.addEventListener("click", function (e) {
+        e.stopPropagation();
+    })
+    thembtn.addEventListener("click", function () {
+        if ($("#env").validity.patternMismatch) {
+            $("#modal-3").classList.add('open')
+            $("#thongbao-modal").innerHTML = "Email không hợp lệ"
+        }
+        else {
+            if ($("#snv").validity.patternMismatch) {
+                $("#modal-3").classList.add('open')
+                $("#thongbao-modal").innerHTML = "SĐT không hợp lệ"
+            }
+            else {
+                if ($("#anv").validity.patternMismatch) {
+                    $("#modal-3").classList.add('open')
+                    $("#thongbao-modal").innerHTML = "Đường dẫn không hợp lệ"
+                }
+                else {
+                    if ($("#tnv").value.length == 0 || $("#env").value.length == 0 || $("#pnv").value.length == 0 || $("#snv").value.length == 0 || $("#anv").value.length == 0) {
+                        $("#thongbao-modal").innerHTML = "Phải nhập đầy đủ thông tin nhân viên"
+                        $("#modal-3").classList.add('open')
+                    }
+                    else {
+                        jQuery.ajax({
+                            url: '/tbl_shipping/ThemShipping',
+                            dataType: "json",
+                            type: "POST",
+                            data: {
+                                shipping_name: $("#tnv").value,
+                                shipping_email: $("#env").value,
+                                shipping_password: $("#pnv").value,
+                                shipping_phone: $("#snv").value,
+                                shipping_img: $("#anv").value,
+                            },
+                            success: function (data) {
+                                if (data > 0) {
+                                    $("#thongbao-modal").innerHTML = "Thêm nhân viên thành công"
+                                    document.getElementById("thongbao-btn").style.visibility = 'hidden';
+                                    $("#modal-3").classList.add('open')
+                                    setTimeout(function () {
+                                        location.reload()
+                                        $("#modal-3").classList.remove('open')
+                                        $("#tnv").value = ""
+                                        $("#env").value = ""
+                                        $("#pnv").value = ""
+                                        $("#snv").value = ""
+                                        $("#anv").value = ""
+                                    }, 1000);
+
+                                }
+                                else if (data == 0) {
+                                    $("#thongbao-modal").innerHTML = "Thêm nhân viên thất bại"
+                                    $("#modal-3").classList.add('open')
+                                }
+                                else {
+                                    $("#thongbao-modal").innerHTML = "Email đã sử dụng, vui lòng dùng email khác"
+                                    $("#modal-3").classList.add('open')
+                                }
+                            },
+                            error: function (xhr) {
+                                $("#thongbao-modal").innerHTML = "Xảy ra lỗi"
+                                $("#modal-3").classList.add('open')
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    })
+</script>
+<script>
+    function handleNotify() {
+        var modal3 = $('#modal-3');
+        const okBtn = $('.okbtn')
+        okBtn.addEventListener("click", function () {
+            modal3.classList.remove("open")
+        })
+    }
+    handleNotify()
 </script>
