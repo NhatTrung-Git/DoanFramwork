@@ -38,8 +38,7 @@
   <ItemGroup>
     <Folder Include="Views\tbl_brand\" />
     <Folder Include="Views\tbl_product\" />
-    <Folder Include="Views\tbl_shipping\" />
-    <Folder Include="Views\tbl_payment\" />
+    <Folder Include="Views\tbl_voucher\" />
     <Folder Include="Views\tbl_order_details\" />
     <Folder Include="Views\tbl_order\" />
     <Folder Include="Views\tbl_customers\" />

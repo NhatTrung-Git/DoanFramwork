@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace Csharp_Project.Models
 {
@@ -18,6 +19,40 @@ namespace Csharp_Project.Models
         public MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
+        }
+        public string Hash(string text)
+        {
+            //Tạo MD5 
+            MD5 mh = MD5.Create();
+            //Chuyển kiểu chuổi thành kiểu byte
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(text);
+            //mã hóa chuỗi đã chuyển
+            byte[] hash = mh.ComputeHash(inputBytes);
+            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
+        }
+        public bool VerifyHash(string input, string hash)
+        {
+            // Hash the input.
+            string hashOfInput = Hash(input);
+
+            // Create a StringComparer an compare the hashes.
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+            if (0 == comparer.Compare(hashOfInput, hash))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public List<object> GetTbl_Products()
         {
@@ -198,77 +233,6 @@ namespace Csharp_Project.Models
                 return cmd.ExecuteNonQuery();
             }
         }
-        public List<object> GetTbl_Shippings()
-        {
-            List<object> list = new List<object>();
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                string str = "SELECT `shipping_id`, `shipping_name`, `shipping_img`, `shipping_email`, `shipping_notes`, `created_at` FROM `tbl_shipping`";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        list.Add(new
-                        {
-                            id = Convert.ToInt32(reader["shipping_id"]),
-                            time = Convert.ToDateTime(reader["created_at"]).ToString("dd/MM/yyyy"),
-                            email = reader["shipping_email"].ToString(),
-                            name = reader["shipping_name"].ToString(),
-                            image = reader["shipping_img"].ToString(),
-                            state = reader["shipping_notes"].ToString(),
-                            status = reader["shipping_notes"].ToString().ToLower(),
-                        });
-                    }
-                    reader.Close();
-                }
-                conn.Close();
-            }
-            return list;
-        }
-        public int InsertShipping(string shipping_name, string shipping_email, string shipping_password, string shipping_phone, string shipping_img)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                string str = "SELECT shipping_id FROM `tbl_shipping` WHERE shipping_email = @mail";
-                string str1 = "INSERT INTO `tbl_shipping`(`shipping_name`, `shipping_img`, `shipping_phone`, `shipping_email`, `shipping_password`, `shipping_notes`, `created_at`, `updated_at`) VALUES (@name,@img,@phone,@email,@pass,@status,@created,@updated)";
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("mail", shipping_email);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if(reader.HasRows)
-                    {
-                        return -1;
-                    }
-                    reader.Close();
-                    cmd = new MySqlCommand(str1, conn);
-                    cmd.Parameters.AddWithValue("name", shipping_name);
-                    cmd.Parameters.AddWithValue("img", shipping_img);
-                    cmd.Parameters.AddWithValue("phone", shipping_phone);
-                    cmd.Parameters.AddWithValue("email", shipping_email);
-                    cmd.Parameters.AddWithValue("pass", shipping_password);
-                    cmd.Parameters.AddWithValue("status", "Active");
-                    cmd.Parameters.AddWithValue("created", DateTime.Now);
-                    cmd.Parameters.AddWithValue("updated", null);
-                    return cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public int UpdateShipping(int shipping_id, string shipping_notes)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                string str = "UPDATE `tbl_shipping` SET `shipping_notes`= @status,`updated_at`= @updated WHERE shipping_id = @id";
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("id", shipping_id);
-                cmd.Parameters.AddWithValue("status", shipping_notes);
-                cmd.Parameters.AddWithValue("updated", DateTime.Now);
-                return cmd.ExecuteNonQuery();
-            }
-        }
         public List<object> GetTbl_Orders()
         {
             List<object> list = new List<object>();
@@ -332,5 +296,123 @@ namespace Csharp_Project.Models
                 return cmd.ExecuteNonQuery();
             }
         }
+        public List<tbl_customers> Customers()
+        {
+            List<tbl_customers> list = new List<tbl_customers>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from tbl_customers";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new tbl_customers()
+                        {
+                            Customer_id = Convert.ToInt32(reader["customer_id"]),
+                            Customer_email = reader["customer_email"].ToString(),
+                            Customer_name = reader["customer_name"].ToString(),
+                            Customer_password = reader["customer_password"].ToString(),
+                            Customer_phone = reader["customer_phone"].ToString(),
+                        });
+                    }
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+        public int InsertUser(tbl_customers us)
+        {
+            List<tbl_customers> customers = Customers();
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (us.Customer_email == customers[i].Customer_email)
+                {
+                    return 0;
+                }
+            }
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into tbl_customers values(NULL,@name,@email,@password,@phone,NULL,NULL)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                var hash = Hash(us.Customer_password);
+                cmd.Parameters.AddWithValue("name", us.Customer_name);
+                cmd.Parameters.AddWithValue("email", us.Customer_email);
+                cmd.Parameters.AddWithValue("password", hash);
+                cmd.Parameters.AddWithValue("phone", us.Customer_phone);
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+
+        public tbl_customers loginUser(string Customer_email, string Customer_password)
+        {
+            tbl_customers cs = new tbl_customers();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from tbl_customers where Customer_email=@email";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("email", Customer_email);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (VerifyHash(Customer_password, reader["customer_password"].ToString()))
+                        {
+                            cs.Customer_id = Convert.ToInt32(reader["customer_id"]);
+                            cs.Customer_email = reader["customer_email"].ToString();
+                            cs.Customer_name = reader["customer_name"].ToString();
+                            cs.Customer_password = reader["customer_password"].ToString();
+
+                        }
+                        return cs;
+                    }
+
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return cs;
+        }
+        public tbl_admin loginAdmin(string Email, string Password)
+        {
+            tbl_admin cs = new tbl_admin();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from tbl_admin where admin_email=@email";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("email", Email);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (Password == reader["admin_password"].ToString())
+                        {
+                            cs.Admin_id = Convert.ToInt32(reader["admin_id"]);
+                            cs.Admin_name = reader["admin_name"].ToString();
+                            cs.Admin_email = reader["admin_email"].ToString();
+                            cs.Admin_password = reader["admin_password"].ToString();
+                        }
+                        return cs;
+                    }
+
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return cs;
+        }
+    
     }
 }

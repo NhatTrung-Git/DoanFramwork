@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Csharp_Project.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Csharp_Project
 {
@@ -24,9 +25,15 @@ namespace Csharp_Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Add(new ServiceDescriptor(typeof(StoreContext), new StoreContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                //thời gian tồn tại session
+                options.IdleTimeout = TimeSpan.FromMinutes(120);
+            });
             services.AddControllersWithViews();
             services.AddMvc();
-            services.Add(new ServiceDescriptor(typeof(StoreContext), new StoreContext(Configuration.GetConnectionString("DefaultConnection"))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +51,7 @@ namespace Csharp_Project
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

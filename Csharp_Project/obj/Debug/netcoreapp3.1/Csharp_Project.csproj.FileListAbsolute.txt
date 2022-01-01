@@ -85,3 +85,5 @@ D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Csha
 D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Razor\Views\tbl_product\ProList.cshtml.g.cs
 D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Razor\Views\tbl_order\Donhang.cshtml.g.cs
 D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Razor\Views\tbl_shipping\CusList.cshtml.g.cs
+D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Razor\Views\tbl_customers\login.cshtml.g.cs
+D:\Solfware\C#Project\Doan_Framework\Csharp_Project\obj\Debug\netcoreapp3.1\Razor\Views\tbl_customers\register.cshtml.g.cs

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Csharp_Project.Controllers
 {
-    public class tbl_paymentController : Controller
+    public class tbl_voucherController : Controller
     {
         public IActionResult Index()
         {
