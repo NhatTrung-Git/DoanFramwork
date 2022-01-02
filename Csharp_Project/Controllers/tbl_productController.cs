@@ -56,5 +56,11 @@ namespace Csharp_Project.Controllers
                 return Json(1);
             return Json(0);
         }
+        public IActionResult buyingpage(int product_id)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(Csharp_Project.Models.StoreContext)) as StoreContext;
+            ViewData["Listp"] = context.GetTbl_ProductById_buying(product_id);
+            return View();
+        }
     }
 }

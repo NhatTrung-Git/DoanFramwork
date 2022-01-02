@@ -47,7 +47,7 @@
                         {
                             <div class="text">
                                 <span>Xin chào @HttpContextAccessor.HttpContext.Session.GetString("_Name")</span>
-                                <a style="margin-left: 10px;" href="Logout">Logout</a>
+                                <a style="margin-left: 10px;" href="/tbl_customers/Logout">Logout</a>
                             </div>
                         }
                         else
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="searchbar cart col-md-2 col-sm-2">
-                    <button class="btn" type="button">
+                    <button class="btn" type="button" onclick="window.location.href='/cart/cart?id=@HttpContextAccessor.HttpContext.Session.GetInt32("_ID")'">
                         <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -604,44 +604,7 @@
 </body>
 </html>
 <script>
-    const danhmucs = [
-        { id: 1, name: "Áo phông 1", image: "asset/img/category_shirt.jpg" },
-        { id: 2, name: "Áo phông 2", image: "asset/img/category_shirt.jpg" },
-        { id: 3, name: "Áo phông 3", image: "asset/img/category_shirt.jpg" },
-        { id: 4, name: "Áo phông 4", image: "asset/img/category_shirt.jpg" },
-        { id: 5, name: "Áo phông 5", image: "asset/img/category_shirt.jpg" },
-        { id: 6, name: "Áo phông 6", image: "asset/img/category_shirt.jpg" },
-        { id: 7, name: "Áo phông 7", image: "asset/img/category_shirt.jpg" },
-        { id: 8, name: "Áo phông 8", image: "asset/img/category_shirt.jpg" },
-        { id: 9, name: "Áo phông 9", image: "asset/img/category_shirt.jpg" },
-        { id: 10, name: "Áo phông 10", image: "asset/img/category_shirt.jpg" },
-        { id: 11, name: "Áo phông 11", image: "asset/img/category_shirt.jpg" },
-        { id: 12, name: "Áo phông 12", image: "asset/img/category_shirt.jpg" },
-        { id: 13, name: "Áo phông 13", image: "asset/img/category_shirt.jpg" },
-        { id: 14, name: "Áo phông 14", image: "asset/img/category_shirt.jpg" },
-        { id: 15, name: "Áo phông 15", image: "asset/img/category_shirt.jpg" },
-        { id: 16, name: "Áo phông 16", image: "asset/img/category_shirt.jpg" },
-        { id: 17, name: "Áo phông 17", image: "asset/img/category_shirt.jpg" },
-        { id: 18, name: "Áo phông 18", image: "asset/img/category_shirt.jpg" },
-        { id: 19, name: "Áo phông 19", image: "asset/img/category_shirt.jpg" },
-        { id: 20, name: "Áo phông 20", image: "asset/img/category_shirt.jpg" },
-        { id: 21, name: "Áo phông 21", image: "asset/img/category_shirt.jpg" },
-        { id: 22, name: "Áo phông 22", image: "asset/img/category_shirt.jpg" },
-        { id: 23, name: "Áo phông 23", image: "asset/img/category_shirt.jpg" },
-        { id: 24, name: "Áo phông 24", image: "asset/img/category_shirt.jpg" },
-        { id: 25, name: "Áo phông 25", image: "asset/img/category_shirt.jpg" },
-        { id: 26, name: "Áo phông 26", image: "asset/img/category_shirt.jpg" },
-        { id: 27, name: "Áo phông 27", image: "asset/img/category_shirt.jpg" },
-        { id: 28, name: "Áo phông 28", image: "asset/img/category_shirt.jpg" },
-        { id: 29, name: "Áo phông 29", image: "asset/img/category_shirt.jpg" },
-        { id: 30, name: "Áo phông 30", image: "asset/img/category_shirt.jpg" },
-        { id: 31, name: "Áo phông 31", image: "asset/img/category_shirt.jpg" },
-        { id: 32, name: "Áo phông 32", image: "asset/img/category_shirt.jpg" },
-        { id: 33, name: "Áo phông 33", image: "asset/img/category_shirt.jpg" },
-        { id: 34, name: "Áo phông 34", image: "asset/img/category_shirt.jpg" },
-        { id: 35, name: "Áo phông 35", image: "asset/img/category_shirt.jpg" },
-        { id: 36, name: "Áo phông 36", image: "asset/img/category_shirt.jpg" },
-    ]
+    const danhmucs = @Html.Raw(Json.Serialize(ViewData["Listc"]));
 
     function renderDanhmucs(danhmucs) {
         let html1 = '';
@@ -670,51 +633,12 @@
 
     }
     renderDanhmucs(danhmucs)
-    const sanphams = [
-        { id: "sp1", name: "Áo phông 1", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp2", name: "Áo phông 2", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp3", name: "Áo phông 3", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp4", name: "Áo phông 4", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp5", name: "Áo phông 5", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp6", name: "Áo phông 6", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp7", name: "Áo phông 7", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp8", name: "Áo phông 8", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp9", name: "Áo phông 9", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp10", name: "Áo phông 10", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp11", name: "Áo phông 11", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp12", name: "Áo phông 12", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp13", name: "Áo phông 13", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp14", name: "Áo phông 14", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp15", name: "Áo phông 15", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp16", name: "Áo phông 16", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp17", name: "Áo phông 17", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp18", name: "Áo phông 18", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp19", name: "Áo phông 19", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp20", name: "Áo phông 20", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp21", name: "Áo phông 21", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp22", name: "Áo phông 22", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp23", name: "Áo phông 23", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp24", name: "Áo phông 24", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp25", name: "Áo phông 25", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp26", name: "Áo phông 26", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp27", name: "Áo phông 27", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp28", name: "Áo phông 28", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp29", name: "Áo phông 29", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp30", name: "Áo phông 30", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp31", name: "Áo phông 31", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp32", name: "Áo phông 32", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp33", name: "Áo phông 33", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp34", name: "Áo phông 34", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp35", name: "Áo phông 35", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp36", name: "Áo phông 36", image: "asset/img/sp1.png", cost: 20000 },
-        { id: "sp37", name: "Áo phông 37", image: "asset/img/sp1.png", cost: 20000 },
-
-    ]
+    const sanphams =  @Html.Raw(Json.Serialize(ViewData["Listp"]));
     let currentID = 10
     function renderSanphams(sanphams) {
         let html = ''
         const content1 = sanphams.map((item, index) => {
-            html += `<a id="${item.id}" class="col-lg sp" href="">
+            html += `<a id="${item.id}" class="col-lg sp" href="/tbl_product/buyingpage?product_id=${item.id}">
                           <div class="card rectcard">
                                 <img class="card-img-top" src="${item.image}">
                                 <span>${item.name}</span>

@@ -1,0 +1,375 @@
+.titlepart {
+    background-color: rgb(254, 172, 184);
+    font-size: 34px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.main-imgproduct img{
+    max-width: 300px;
+    max-height: 350px;
+    height: fit-content;
+    width: 100%;
+}
+
+.container.product {
+    /* background-color: rgb(180, 237, 255); */
+    position: relative;
+    /* padding-left: 5%; */
+    /* padding-right: 5%; */
+    padding-block: 20px;
+}
+
+.boxproduct {
+    height: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 1px;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    background-color: rgb(254, 172, 184);
+    padding-block: 30px;
+    border-radius: 24px;
+}
+
+.imgproduct {
+    padding-inline: 2%;
+    /* display: block; */
+}
+
+.main-imgproduct {
+    display: flex;
+    max-height: 350px;
+    width: 100%;
+    background-color: white;
+    border-radius: 30px;
+    justify-content: center;
+}
+
+#previewlist-imgproduct {
+    margin-top: 3%;
+    position: relative;
+}
+
+.detailproduct {
+    padding-inline: 2%;
+    position: relative;
+    justify-content: center;
+    display: block;
+}
+
+.name-product {
+    font-size: x-large;
+    position: relative;
+}
+
+.info-product {
+    /* margin-top: 30px; */
+    /* font-weight: bold; */
+}
+
+.price-product {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    box-sizing: border-box;
+    position: static;
+    width: fit-content;
+    background: rgb(254, 172, 184);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-image: initial;
+    padding: 10px;
+}
+
+.delivery-product {
+    margin-bottom: 1%;
+}
+
+.count-quantity-product {
+    margin-bottom: 5%;
+}
+
+.button-buying-product {
+    width: 100%;
+    float: right;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.rating-color {
+    /* color: rgb(242, 122, 98) !important; */
+}
+
+.small-ratings i {
+    font-size: 15px;
+    color: rgb(242, 122, 98);
+}
+
+.discount-price-product span {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(242, 122, 98);
+}
+
+.original-price-product {
+    /* font-size: large; */
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;
+    text-decoration: line-through;
+    /* text-decoration-line: line-through; */
+    /* text-decoration-thickness: initial; */
+    /* text-decoration-style: initial; */
+    /* text-decoration-color: initial; */
+}
+
+.discount-percent-product {
+    /* width: 110px; */
+    /* height: 22px; */
+    float: left;
+    position: relative;
+    margin-left: 15px;
+    background-color: rgb(242, 122, 98);
+    text-align: center;
+    color: white;
+    font-size: 100%;
+}
+
+.input-group-btn .btn {
+    box-shadow: none;
+    font-size: 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+.form-control.text-center {
+    background-color: rgb(254, 172, 184);
+    height: 25px !important;
+    width: 30px !important;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+.btn-return {
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 0px;
+    /* color: white; */
+    width: 45%;
+    background: white;
+    border-radius: 5px;
+}
+
+.btn-buynow {
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 0px;
+    color: white;
+    width: 45%;
+    background: rgb(255, 0, 0);
+    border-radius: 5px;
+}
+
+.info-rating-product {
+    display: flex;
+    align-items: center;
+}
+
+.remove i {
+    float: right;
+    font-size: 30px;
+}
+
+input[type="checkbox"] {
+    zoom: 1.5;
+}
+
+/* totalprice */
+.totalprice {
+  /* background-color: #FEACB8; */
+}
+
+.voucherline span {
+  float: right;
+}
+
+.totalprice {
+    height: 100%;
+    /* padding-left: 5%; */
+    /* padding-right: 5%; */
+    /* margin-left: 1px; */
+    display: flex;
+    justify-content: center;
+    padding-block: 30px;
+    border-radius: 24px;
+    /* background: #FEACB8; */
+    position: relative;
+    /* margin-top:20px; */
+    padding-block: 20px;
+}
+
+.break-line{
+    clear: left;
+    width: 99.8%;
+    height: 0%;
+    border: 0.1vh solid rgba(0, 0, 0, 0.3);
+    /* top: 10%; */
+}
+
+.voucherline {
+    margin-block: 10px;
+}
+
+.bill {
+    /* width: fit-content; */
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.allremove {
+    margin-left: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.totalbill {
+    font-size: 30px;
+    color: #F27A62;
+    font-weight: bold;
+
+}
+
+.boxbill {
+    height: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 1px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(254, 172, 184);
+    padding-block: 30px;
+    border-radius: 24px;
+}
+
+@media (max-width: 576px) {
+
+.button-buying-product div{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button-buying-product {
+    float: left;
+}
+
+.bill{
+    margin-left: 10px;
+}
+
+}
+/* header */
+/* main nav */
+
+.row-mainnav{
+    padding: 2px;
+}
+
+.btnnav{
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btnlogin {
+    background-color: #A8DBFE;
+    color: #18A0FB;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+#btnregister {
+    background-color: #18A0FB;
+    color: #A8DBFE;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+}
+
+.mainnav {
+    padding-left: 5%;
+    position: relative;
+    background: none!important;
+}
+
+.mainnav a {
+    color: #18A0FB!important;
+    /* max-width: 200px; */
+}
+
+/* search nav */
+.searchbar.search{
+    display: flex;
+    align-items: center;
+    /* background: red; */
+}
+
+.searchbar.cart{
+    /* width: max-content; */
+    justify-content: start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* background: pink; */
+}
+
+.searchbar.logo{
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    /* background: blue; */
+}
+
+.searchbar.logo img {
+    width: 100%;
+    max-width: 100px;
+}
+
+.searchbar.cart i {
+    position: r;
+    font-size: 30px;
+    color: black;
+    float: left;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group-btn .btn {
+    box-shadow: none;
+    font-size: 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}

@@ -107,7 +107,7 @@ namespace Csharp_Project.Models
             List<object> list = new List<object>();
             using (MySqlConnection conn = GetConnection())
             {
-                string str = "SELECT category_id, category_name FROM tbl_category_product";
+                string str = "SELECT category_id, category_name, category_desc FROM tbl_category_product";
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
@@ -413,6 +413,127 @@ namespace Csharp_Project.Models
             }
             return cs;
         }
-    
+        public List<object> GetTbl_Category_Products_Home()
+        {
+            List<object> list = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "SELECT category_id, category_name, category_desc FROM tbl_category_product";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new
+                        {
+                            id = Convert.ToInt32(reader["category_id"]),
+                            name = reader["category_name"].ToString(),
+                            image = reader["category_desc"].ToString(),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+        public List<object> GetTbl_ProductById_buying(int id)
+        {
+            List<object> list = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "SELECT product_id,product_name,product_desc,product_price,product_image,product_status FROM `tbl_product` WHERE product_id = @id";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        list.Add(new
+                        {
+                            id = Convert.ToInt32(reader["product_id"]),
+                            name = reader["product_name"].ToString(),
+                            description = reader["product_desc"].ToString(),
+                            image = reader["product_image"].ToString(),
+                            cost = reader["product_price"].ToString(),
+                            available = Convert.ToInt32(reader["product_status"]),
+                            mini_image = reader["product_image"].ToString(),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+        public int InsertCart(int customer_id, int product_id, int cart_quantity, string cart_price)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "SELECT cart_id FROM `cart` WHERE customer_id = @cidc AND product_id = @pidc";
+                string str1 = "INSERT INTO `cart`(`customer_id`, `product_id`, `cart_quantity`, `cart_price`) VALUES (@cid, @pid, @quantity, @price)";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("cidc", customer_id);
+                cmd.Parameters.AddWithValue("pidc", product_id);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows == false)
+                    {
+                        reader.Close();
+                        cmd = new MySqlCommand(str1, conn);
+                        cmd.Parameters.AddWithValue("cid", customer_id);
+                        cmd.Parameters.AddWithValue("pid", product_id);
+                        cmd.Parameters.AddWithValue("quantity", cart_quantity);
+                        cmd.Parameters.AddWithValue("price", cart_price);
+                        return cmd.ExecuteNonQuery();
+                    }
+                    return -1;
+                }
+            }
+        }
+        public List<object> Getcart(int id)
+        {
+            List<object> list = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "SELECT cart_id, p.product_image, p.product_name, cart_price, cart_quantity FROM `cart` c JOIN tbl_product p on p.product_id = c.product_id WHERE customer_id = @id";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int sl = Convert.ToInt32(reader["cart_quantity"]);
+                        int sum = Convert.ToInt32(reader["cart_price"].ToString());
+                        list.Add(new
+                        {
+                            id = Convert.ToInt32(reader["cart_id"]),
+                            image = reader["product_image"].ToString(),
+                            name = reader["product_name"].ToString(),
+                            cost = sum,
+                            available = sl,
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+        public int DeleteCart(int id)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                string str = "DELETE FROM `cart` WHERE `cart_id` = @id";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                return cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

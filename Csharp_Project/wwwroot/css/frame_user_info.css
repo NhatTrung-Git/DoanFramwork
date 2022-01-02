@@ -1,0 +1,247 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url("asset/fonts/Montserrat-Regular.ttf");
+} 
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url("asset/fonts/Montserrat-Bold.ttf");
+}
+
+* {
+    font-family: 'Montserrat';
+    font-size: 20px;
+}
+
+/* header */
+header .container {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+header a {
+  margin-top: 10px;
+  float: right;
+  color: #18A0FB !important;
+}
+
+/* main */
+/* choose-group */
+
+.user-avatar{
+  width: 100%;
+  width: 300px;
+  height: 180px;
+  position: relative;
+  display: flex;
+  margin-top: 2px;
+  align-items: center;
+  justify-content: center;
+  background-color: #efe2ba;
+  padding:6px
+}
+
+.user-avatar img {
+  object-fit: fill;
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+.user-name {
+  position: relative;
+  padding-top: 10px;
+  min-height: 70px;
+  max-height: 70px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.user-btnchange{
+  margin-bottom: 10px;
+}
+
+.user-btnchange-btn {
+    font-size: 20px;
+    height: 30px;
+    width: 100%;
+    background: #7749F8;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+.active, choice:hover{
+    color: #FBADAD;
+}
+
+.choice{
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.choice a {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* choice-details */
+
+.title-choice-details{
+  background-color: #FEACB8;
+  font-weight: bold;
+  padding-left: 8px;
+}
+
+.title-choice-details h3 {
+  font-weight: bold;
+  padding-top: 8px;
+  /* width: 400px; */
+}
+
+.content-choice-group .row {
+    margin-right: 0px;
+}
+
+.container-mini {
+  margin-bottom: 20px;
+}
+
+.title-choice-details .row {
+  width: max-content;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  min-height: 350px;
+}
+
+.btn-add{
+    float: right;
+    border:0;
+    background-color:#FBE061;
+    font-size: 22px;
+    line-height: 23px;
+    width: fit-content;
+    position: relative;
+}
+/* hover vào button thêm */
+.btn-add:hover{
+    cursor: pointer;
+}
+/* css hình dấu cộng */
+.fa-plus{
+    font-size:25px;
+    margin: 12px 1px; 
+}
+
+@media (max-width: 576px) {
+  .content-choice-group .row {
+    margin-right: 0px;
+  }
+
+  .user-name h5 {
+    font-size: 22px;
+  }
+
+  .title-choice-details h3 {
+    font-size: 23px;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .content-choice-group .row {
+    margin-right: 0px;
+  }
+
+  .user-avatar{
+      width: 100%;
+      min-height: 260px;
+      max-height: 640px;
+      position: relative;
+    }
+
+   .btn-add span {
+      display: none;
+    }
+
+    .btn-add {
+      float: right;
+      margin-right: 0px;
+    }
+
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+  .content-choice-group {
+      margin-bottom: 10px;
+    }
+
+    .user-avatar{
+      width: 100%;
+      min-height: 190px;
+      max-height: 190px;
+      position: relative;
+    }
+    
+   .user-name h5 {
+     font-size: 21px;
+    }
+
+    .btn-add span {
+      display: none;
+    }
+
+    .btn-add {
+      float: right;
+      margin-right: 0px;
+    }
+
+     .title-choice-details h3 {
+      width: 400px;
+    }
+}
+
+ @media (min-width: 767px) and (max-width: 992px) {
+    .content-choice-group {
+      margin-bottom: 10px;
+    }
+
+    .user-avatar{
+      width: 100%;
+      min-height: 240px;
+      max-height: 240px;
+      position: relative;
+    }
+
+    .choice{
+      margin-top: 18px;
+    }
+
+   
+}
+
+ @media (min-width: 1200px) and (max-width: 1399px) {
+   
+    .user-avatar{
+      width: 100%;
+      min-height: 180px;
+      max-height: 300px;
+      position: relative;
+    }
+}
+
+ @media (min-width: 992px) and (max-width: 1199px) {
+    .user-avatar{
+      width: 100%;
+      min-height: 220px;
+      max-height: 220px;
+      position: relative;
+    }
+    .user-name h5 {
+      font-size: 21px;
+    }
+}

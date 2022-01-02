@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\cart\" />
     <Folder Include="Views\tbl_brand\" />
     <Folder Include="Views\tbl_product\" />
     <Folder Include="Views\tbl_voucher\" />

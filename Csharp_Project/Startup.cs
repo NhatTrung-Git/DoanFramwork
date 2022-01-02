@@ -30,7 +30,7 @@ namespace Csharp_Project
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 //thời gian tồn tại session
-                options.IdleTimeout = TimeSpan.FromMinutes(120);
+                options.IdleTimeout = TimeSpan.FromMinutes(9999);
             });
             services.AddControllersWithViews();
             services.AddMvc();
