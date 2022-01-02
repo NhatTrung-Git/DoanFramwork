@@ -1153,6 +1153,6 @@ hr {
     margin-bottom: 25px;
 }
 
-.modal.open {
+.open {
     display: flex !important;
 }

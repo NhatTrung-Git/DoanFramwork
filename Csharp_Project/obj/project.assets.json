@@ -383,19 +383,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Trung\\.nuget\\packages\\": {}
+    "C:\\Users\\Hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Solfware\\C#Project\\Doan_Framework\\Csharp_Project\\Csharp_Project.csproj",
+      "projectUniqueName": "D:\\Csharp_thi\\Doan_Framework\\Csharp_Project\\Csharp_Project.csproj",
       "projectName": "Csharp_Project",
-      "projectPath": "D:\\Solfware\\C#Project\\Doan_Framework\\Csharp_Project\\Csharp_Project.csproj",
-      "packagesPath": "C:\\Users\\Trung\\.nuget\\packages\\",
-      "outputPath": "D:\\Solfware\\C#Project\\Doan_Framework\\Csharp_Project\\obj\\",
+      "projectPath": "D:\\Csharp_thi\\Doan_Framework\\Csharp_Project\\Csharp_Project.csproj",
+      "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+      "outputPath": "D:\\Csharp_thi\\Doan_Framework\\Csharp_Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -407,7 +407,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -419,7 +418,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MySql.Data": {
             "target": "Package",
@@ -444,7 +442,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.416\\RuntimeIdentifierGraph.json"
       }
     }
   }

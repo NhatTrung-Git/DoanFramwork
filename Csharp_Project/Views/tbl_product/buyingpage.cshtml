@@ -1,6 +1,6 @@
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@{ 
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -15,15 +15,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="~/css/buyingpage.css"/>
+
+    <link rel="stylesheet" type="text/css" href="~/css/buyingpage.css" />
 
     <script>
-        $(document).on('click', '.number-spinner button', function () {    
+        $(document).on('click', '.number-spinner button', function () {
             var btn = $(this),
-            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-            newVal = 0;
-            
+                oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                newVal = 0;
+
             if (btn.attr('data-dir') == 'up') {
                 newVal = parseInt(oldValue) + 1;
                 var check = document.querySelector("#soluongmax").textContent;
@@ -39,92 +39,93 @@
             btn.closest('.number-spinner').find('input').val(newVal);
         });
     </script>
-    
+
 </head>
 
 <body>
-    
-<header>
-    <div class="container" style="background: #B4EDFF;">
-        <div class="row row-mainnav">
-            <nav class="col-md-9 col-sm-6 col-2 mainnav navbar navbar-expand-lg navbar-light bg-light">
-                <div style="width: 100%">
-                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarNavAltMarkup" style="">
-                        <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="/Home/Index">Home</a>
-                            <a class="nav-link" href="#">Features</a>
-                            <a class="nav-link" href="#">Pricing</a>
-                            <a class="nav-link ">Community</a>
-                            <a class="nav-link ">Support</a>
-                            <a class="nav-link ">Track order</a>
+
+    <header>
+        <div class="container" style="background: #B4EDFF;">
+            <div class="row row-mainnav">
+                <nav class="col-md-9 col-sm-6 col-2 mainnav navbar navbar-expand-lg navbar-light bg-light">
+                    <div style="width: 100%">
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse" id="navbarNavAltMarkup" style="">
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="/Home/Index">Home</a>
+                                <a class="nav-link" href="#">Features</a>
+                                <a class="nav-link" href="#">Pricing</a>
+                                <a class="nav-link ">Community</a>
+                                <a class="nav-link ">Support</a>
+                                <a class="nav-link ">Track order</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="col-md-3 col-sm-6 col-10 btnnav">
+                    @{
+                        if (@HttpContextAccessor.HttpContext.Session.GetInt32("_ID") != null)
+                        {
+                            <div class="text">
+                                <span>Xin chào @HttpContextAccessor.HttpContext.Session.GetString("_Name")</span>
+                                <a style="margin-left: 10px;" href="/tbl_customers/Logout">Logout</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <button onclick="window.location.href='/tbl_customers/login'" type="button" id="btnlogin">Login</button>
+                            <button onclick="window.location.href='/tbl_customers/register'" type="button" id="btnregister">Register</button>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="row pt-4 pb-3" style="position: relative">
+                <div class="searchbar logo col-md-2 col-sm-2">
+                    <img src="~/logo.png">
+                </div>
+
+                <div class="searchbar search col-md-8 col-sm-8 col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </nav>
 
-            <div class="col-md-3 col-sm-6 col-10 btnnav">
-                @{
-                    if (@HttpContextAccessor.HttpContext.Session.GetInt32("_ID") != null)
-                    {
-                        <div class="text">
-                            <span>Xin chào @HttpContextAccessor.HttpContext.Session.GetString("_Name")</span>
-                            <a style="margin-left: 10px;" href="/tbl_customers/Logout">Logout</a>
-                        </div>
-                    }
-                    else
-                    {
-                        <button onclick="window.location.href='/tbl_customers/login'" type="button" id="btnlogin">Login</button>
-                        <button onclick="window.location.href='/tbl_customers/register'" type="button" id="btnregister">Register</button>
-                    }
-                }
+                <div class="searchbar cart col-md-2 col-sm-2">
+                    <button class="btn" type="button" onclick="window.location.href='/cart/cart'">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="row pt-4 pb-3" style="position: relative">
-            <div class="searchbar logo col-md-2 col-sm-2">
-                <img src="~/logo.png">
-            </div>
+    <main>
 
-            <div class="searchbar search col-md-8 col-sm-8 col-12"><div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>                           
-            </div>
+        <div id="product"></div>
 
-            <div class="searchbar cart col-md-2 col-sm-2">
-                 <button class="btn" type="button" onclick="window.location.href='/cart/cart'">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                </button> 
-            </div>
-        </div>             
-    </div>
-</header>
-
-<main>
-
-   <div id="product"></div>
-
-    <div class="container product shopowner my-4 ">
-        <div class="row d-flex" style="align-items: center;">
-            <div class="col-sm-3" style="
+        <div class="container product shopowner my-4 ">
+            <div class="row d-flex" style="align-items: center;">
+                <div class="col-sm-3" style="
     position: relative;
     display: flex;
     justify-content: center;
 ">
-                <div class="avatar-shopowner" style="
+                    <div class="avatar-shopowner" style="
 ">
-                    <img src="~/logo.png" width="100%">
+                        <img src="~/logo.png" width="100%">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 content-shop border-right">
-                
+                <div class="col-md-6 content-shop border-right">
+
                     <div class="row name-status-shopowner">
                         <div class="col-md-6 name-shopowner ">
                             UIT Store
@@ -133,159 +134,161 @@
                             Online
                         </div>
                     </div>
-                
+
                     <div class="row view-chatwith-shopowner d-flex" style="padding-inline: 5px;justify-content: space-around;">
                         <div class="col-lg-6">
-                    <button class=" btn btn-view-shopowner"> Xem shop </button>       
+                            <button class=" btn btn-view-shopowner"> Xem shop </button>
                         </div>
                         <div class="col-lg-6">
-    <button class=" btn btn-chatwith-shopowner">Chat với Shop</button>
-                            
+                            <button class=" btn btn-chatwith-shopowner">Chat với Shop</button>
+
                         </div>
                     </div>
-               
 
-            </div>
-            
-            <div class="col-sm-3 numreview-numproduct-shop">
-                <div class="row-review-product">
-                    <div style="display: inline-block;"><span class="numreview-shop">Đánh giá 100</span>
-                    </div>
-                    <div style="display: inline-block;"><span class="numproduct-shop">Sản phẩm 35</span>
+
+                </div>
+
+                <div class="col-sm-3 numreview-numproduct-shop">
+                    <div class="row-review-product">
+                        <div style="display: inline-block;">
+                            <span class="numreview-shop">Đánh giá 100</span>
+                        </div>
+                        <div style="display: inline-block;">
+                            <span class="numproduct-shop">Sản phẩm 35</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container product details-describe my-4">
-        <div class="details">
+        <div class="container product details-describe my-4">
+            <div class="details">
+                <div class="titlepart">
+                    Chi tiết sản phẩm
+                </div>
+                <div class="details-text">
+                    Neoljohahae
+                </div>
+            </div>
+            <div class="describe">
+                <div class="titlepart">
+                    Mô tả sản phẩm
+                </div>
+                <div class="describe-text">
+                    Neoljohahae Neoljohahae Neoljohahae
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container product reviews my-4">
             <div class="titlepart">
-                Chi tiết sản phẩm
+                Đánh giá sản phẩm
             </div>
-            <div class="details-text">
-                Neoljohahae
+            <div class="container review-buyer">
+
+                <div class="row line-review-buyer">
+                    <div class="col-1 avatar-buyer-placeholder">
+                        <img class="avatar-buyer" src="~/logo.png">
+                    </div>
+
+                    <div class="col-10 review-detail-buyer">
+                        <div class="row info-rating-product">
+                            <div class="small-ratings" style="margin-right: 5px;">
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="row name-review">
+                            KhachHang3
+                        </div>
+                        <div class="row comment-review">
+                            Hahahahahahahahaha 12345
+                        </div>
+                        <div>
+                            <div class="row imglist-review">
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row line-review-buyer">
+                    <div class="col-1 avatar-buyer-placeholder">
+                        <img class="avatar-buyer" src="~/logo.png">
+                    </div>
+
+                    <div class="col-10 review-detail-buyer">
+                        <div class="row info-rating-product">
+                            <div class="small-ratings" style="margin-right: 5px;">
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="row name-review">
+                            KhachHang3
+                        </div>
+                        <div class="row comment-review">
+                            Hahahahahahahahaha 12345
+                        </div>
+                        <div>
+                            <div class="row imglist-review">
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                                <div class="img-review-placeholder">
+                                    <img class="img-review" src="asset/img/sp1.png">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="describe">
-            <div class="titlepart">
-                Mô tả sản phẩm
+    </main>
+    <div id="modal-1" class="modal js-modal">
+        <form class="modal-content">
+            <div class="container-1">
+                <h1>Thông báo đăng kí thành công</h1>
+                <p>Chúc mừng bạn đã đăng kí tài khoản thành công tại website của chúng tôi!!</p>
+                <div class="clearfix">
+                    <button type="button" class="okbtn">OK</button>
+                </div>
             </div>
-            <div class="describe-text">
-                Neoljohahae Neoljohahae Neoljohahae
-            </div>
-        </div>
-        
+        </form>
     </div>
-
-    <div class="container product reviews my-4">
-        <div class="titlepart">
-            Đánh giá sản phẩm
-        </div>
-        <div class="container review-buyer">
-
-            <div class="row line-review-buyer">
-                <div class="col-1 avatar-buyer-placeholder">
-                    <img class="avatar-buyer" src="~/logo.png">
-                </div>
-                
-                <div class="col-10 review-detail-buyer">
-                    <div class="row info-rating-product">
-                        <div class="small-ratings" style="margin-right: 5px;"> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star-o" aria-hidden="true"></i> 
-                            <i class="fa fa-star-o" aria-hidden="true"></i> 
-                        </div>
-                    </div>
-                    <div class="row name-review">
-                        KhachHang3
-                    </div>
-                    <div class="row comment-review">
-                        Hahahahahahahahaha 12345
-                    </div>
-                    <div>
-                        <div class="row imglist-review">
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-
-            <div class="row line-review-buyer">
-                <div class="col-1 avatar-buyer-placeholder">
-                    <img class="avatar-buyer" src="~/logo.png">
-                </div>
-                
-                <div class="col-10 review-detail-buyer">
-                    <div class="row info-rating-product">
-                        <div class="small-ratings" style="margin-right: 5px;"> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star rating-color" aria-hidden="true"></i> 
-                            <i class="fa fa-star-o" aria-hidden="true"></i> 
-                            <i class="fa fa-star-o" aria-hidden="true"></i> 
-                        </div>
-                    </div>
-                    <div class="row name-review">
-                        KhachHang3
-                    </div>
-                    <div class="row comment-review">
-                        Hahahahahahahahaha 12345
-                    </div>
-                    <div>
-                        <div class="row imglist-review">
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                            <div class="img-review-placeholder">
-                                <img class="img-review" src="asset/img/sp1.png">
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</main>
-<div id="modal-1" class="modal js-modal">
-    <form class="modal-content">
-        <div class="container-1">
-            <h1>Thông báo đăng kí thành công</h1>
-            <p>Chúc mừng bạn đã đăng kí tài khoản thành công tại website của chúng tôi!!</p>
-            <div class="clearfix">
-                <button type="button" class="okbtn">OK</button>
-            </div>
-        </div>
-    </form>
-</div>
 </body>
 
 </html>
@@ -472,18 +475,18 @@
                         if (data == -1) {
                             //alert("San pham da co trong gio hang")
                             const modal = document.querySelector('.js-modal');
-                            modal.classList.add('open');
-                        
+                            document.querySelector('#modal-1').classList.add('open')
+
                         }
                         else if (data == 0) {
                             //alert("That bai")
                             const modal = document.querySelector('.js-modal');
-                            modal.classList.add('open');
+                            document.querySelector('#modal-1').classList.add('open')
                         }
                         else {
                             //alert("Thanh cong")
                             const modal = document.querySelector('.js-modal');
-                            modal.classList.add('open');
+                            document.querySelector('#modal-1').classList.add('open')
                         }
                     },
                     error: function (xhr) {
@@ -491,18 +494,18 @@
                     }
                 });
         }
-           
+
     })
 
 </script>
 <script>
-    function handleNotify(){
-    ///var modal = document.querySelector('.modal');
-    const okBtn = document.querySelector('.okbtn')
+    function handleNotify() {
+        var modal1 = document.querySelector('#modal-1');
+        const okBtn = document.querySelector(".okbtn")
         okBtn.addEventListener("click", function () {
-            modal.classList.remove('open');
+            modal1.classList.remove('open')
         })
     }
-    handleNotify();
-    console.log(document.querySelector('#modal-1'))
-</script>
+    handleNotify()
+
+</script> 
