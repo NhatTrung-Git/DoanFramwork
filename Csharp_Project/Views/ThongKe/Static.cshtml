@@ -1,0 +1,235 @@
+﻿
+@model IEnumerable<Csharp_Project.Models.DSThongKe>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Thống kê</title>
+    <!-- <link rel='shortcut icon' href='https://img.icons8.com/fluency/100/000000/music-band.png'/> -->
+    <link rel="stylesheet" href="~/css/Statis.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <script src="https://kit.fontawesome.com/610ab90504.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <!-- Begin nav -->
+            <ul id="nav">
+                <li><a href="@Url.Action("ProList", "tbl_product")">Quản lí sản phẩm</a></li>
+                <li><a href="@Url.Action("Donhang", "tbl_order")">Quản lí đơn hàng</a></li>
+                <li><a href="@Url.Action("Voucher", "tbl_voucher")">Quản lí khuyến mãi</a></li>
+                <li><a href="@Url.Action("Nhacc", "tbl_brand")">Quản lí nhà cung cấp</a></li>
+                <li><a href="#">Thống kê</a></li>
+                <li> <a href="/tbl_customers/Logout"> LOGOUT </a> </li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </div>
+    <div class="chartCard">
+        <div class="chartBox">
+            <canvas id="myChart"></canvas>
+            <div class="label">
+                <div class="content-label">
+                    <label>Nhập năm</label>
+                    <form method="post" action="/ThongKe/Static">
+                        <input type="number" name="nam" id="date"><br>
+                        <center style="margin-top:10px"><input  type="submit"  value="Xem phân tích"/></center>
+                    </form>
+                </div>
+                <div class="content-label">
+                    <label>Statictis</label>
+                    <select id="select1" style="height:29px">
+                        <optgroup label="Select Statictis"></optgroup>
+                        <option value="bar">Bar</option>
+                        <option value="line">Line</option>
+                        <option value="pie">Pie</option>
+                        <option value="radar">Radar</option>
+                        <option value="polarArea">PolarArea</option>
+                        <option value="doughnut">Doughnut</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+
+<!-- Xử lí mobile menu -->
+<script>
+    var header = document.querySelector('#header')
+    var menuBTN = document.querySelector('#header .menu-btn');
+    var headerHeight = header.clientHeight;
+
+    // Xử lí mở đóng menu
+    menuBTN.onclick = function () {
+        var isClosed = header.clientHeight === headerHeight;
+        if (isClosed) {
+            header.style.height = "auto";
+
+        } else {
+            header.style.height = null;
+        }
+    }
+    // Xử lí click vào menu item rồi đóng menu
+    var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+    var menuItemsLength = menuItems.length
+
+    for (var i = 0; i < menuItemsLength; i++) {
+        var menuItem = menuItems[i]
+        menuItem.onclick = function (e) {
+
+            var isParent = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav')
+            // var isOpen=this.nextElementSibling && this.nextElementSibling.classList.contains('subnav') && document.querySelector('.subnav').position
+            if (isParent) {
+                // var isOpened=document.querySelector(".subnav").style.position;
+                // if(isOpened=="initial"){
+                // document.querySelector(".subnav").style.position = "absolute";
+                // }else{
+                //     document.querySelector(".subnav").style.position = "initial";
+                // }
+                e.preventDefault()
+            } else {
+                header.style.height = null;
+            }
+        }
+    }
+</script>
+<script>
+    const dstk = @Html.Raw(Json.Serialize(ViewData["listds"]));
+
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    const ctx = document.getElementById("myChart").getContext("2d");
+    let date = $('#date')
+    var xValues = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11",
+        "Tháng 12"];
+    //var yValues = [55, 499, 494, 204, 125, 3333, 55, 66, 9, 10, 11, 12];
+    var yValues = dstk;
+    let gradient = ctx.createLinearGradient(0, 0, 0, 400)
+    gradient.addColorStop(0, 'rgba(58,123,123,1)')
+    gradient.addColorStop(1, 'rgba(0,210,255,0.3)')
+    const data = {
+        labels: xValues,
+        datasets: [{
+            label: "Quantity",
+            fill: true,
+            backgroundColor: [gradient, 'rgba(54, 162, 235, 0.2)',
+
+                'rgba(255, 206, 86, 0.2)',
+
+                'rgba(75, 192, 192, 0.2)',
+
+                'rgba(153, 102, 255, 0.2)',
+
+                'rgba(255, 159, 64, 0.2)',
+
+                'rgba(255, 99, 132, 1)',
+
+                'rgba(54, 162, 235, 1)',
+
+                'rgba(255, 206, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+
+                'rgba(153, 102, 255, 1)',
+
+            ],
+            data: yValues,
+            borderColor: "#fff",
+            borderWidth: 3,
+        }]
+    }
+    const config = {
+        type: "bar",
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+    let myChart = new Chart(ctx, config)
+    const config1 = {
+        type: "line",
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+    const config2 = {
+        type: "pie",
+        data: data,
+        options: {
+        },
+    };
+    const config3 = {
+        type: "radar",
+        data: data,
+        options: {
+            scales: {
+            }
+        },
+    };
+    const config4 = {
+        type: "polarArea",
+        data: data,
+        options: {
+        },
+    };
+    const config5 = {
+        type: "doughnut",
+        data: data,
+        options: {
+        },
+    };
+    date.addEventListener("input", (e) => {
+        console.log(e.target.value)
+    })
+    const typeOfChart = $('#select1')
+    typeOfChart.addEventListener('change', (e) => {
+        myChart.destroy();
+        if (e.target.value === 'bar') {
+            myChart = new Chart(ctx, config)
+        }
+        if (e.target.value === 'line') {
+            myChart = new Chart(ctx, config1)
+        }
+        if (e.target.value === 'pie') {
+            myChart = new Chart(ctx, config2)
+        }
+        if (e.target.value === 'radar') {
+            myChart = new Chart(ctx, config3)
+        }
+        if (e.target.value === 'polarArea') {
+            myChart = new Chart(ctx, config4)
+        }
+        if (e.target.value === 'doughnut') {
+            myChart = new Chart(ctx, config5)
+        }
+    })
+</script>
+}

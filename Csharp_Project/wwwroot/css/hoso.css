@@ -1,0 +1,349 @@
+/* main */
+/* frame_user_info.css */
+
+/* choice-details */
+.container-user-details {
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.label-form{
+  font-weight: bold;
+  flex: 1;
+  display:inline-block;
+  justify-content:center;
+  align-items:center;
+  padding: 0 0 0 20px;
+}
+
+.text-form{
+    width: 98%;
+    background: #FFFFFF;
+    border:0px;
+    min-width: 240px;
+    padding-left: 10px;
+}
+
+.form-group{
+    margin-top: 10px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.content-form{
+    color: #000000;
+    font-weight: normal;
+    line-height: 35px;
+    flex:3;
+    display: inline-block;
+    position: relative;
+}
+
+.radio-group{
+    display: flex;
+    flex:1;
+    margin-right:18px;
+    align-items:center;
+}
+
+.group-trippletext{
+    width: 100%;
+    display: flex;
+}
+
+.tripletext-form{
+    width: 50px;
+    background: #FFFFFF;
+    flex:1;
+    display: flex;
+    margin-right: 12px;
+    text-align: center;
+    border:0px;
+}
+
+/* header */
+/* main nav */
+
+.row-mainnav {
+    padding: 2px;
+}
+
+.btnnav {
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btnlogin {
+    background-color: #A8DBFE;
+    color: #18A0FB;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+#btnregister {
+    background-color: #18A0FB;
+    color: #A8DBFE;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+}
+
+.mainnav {
+    padding-left: 5%;
+    position: relative;
+    background: none !important;
+}
+
+    .mainnav a {
+        color: #18A0FB !important;
+        /* max-width: 200px; */
+    }
+
+/* search nav */
+.searchbar.search {
+    display: flex;
+    align-items: center;
+    /* background: red; */
+}
+
+.searchbar.cart {
+    /* width: max-content; */
+    justify-content: start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* background: pink; */
+}
+
+.searchbar.logo {
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    /* background: blue; */
+}
+
+    .searchbar.logo img {
+        width: 100%;
+        max-width: 100px;
+    }
+
+.searchbar.cart i {
+    position: r;
+    font-size: 30px;
+    color: black;
+    float: left;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group-btn .btn {
+    box-shadow: none;
+    font-size: 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+.modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.modal-container {
+    background-color: #fff;
+    width: 900px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    position: relative;
+    animation: modalFadeIn ease 0.5s;
+}
+
+.modal-header {
+    background-color: #009688;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 0px !important;
+    color: #fff;
+    font-size: 30px;
+    letter-spacing: 2px
+}
+
+.modal-header-icon {
+    margin-right: 16px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0px;
+    padding: 9.8px 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+    .modal-close:hover {
+        background-color: #ccc
+    }
+
+.modal-body {
+    padding: 16px;
+    margin: auto;
+}
+
+.modal-label {
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 24px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.modal-input-l {
+    width: 47%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    display: inline-block;
+    margin-right: 46px
+}
+
+.modal-input-r {
+    width: 47%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.modal-button {
+    background-color: #009688;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+    border: none;
+}
+
+    .modal-button:hover {
+        background-color: #ccc;
+        color: #000;
+    }
+
+.open {
+    display: flex !important;
+}
+
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(-140px)
+    }
+
+    to {
+        transform: translateY(0px)
+    }
+}
+
+input[type="file"] {
+    display: none;
+    opacity: 0.5;
+}
+
+    input[type="file"]:hover {
+        opacity: 1;
+    }
+
+select {
+    border: 10px solid rgba(0, 0, 0, 0.5);
+    color: #00000080;
+}
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn, .okbtn {
+    float: left;
+    width: 50%;
+    opacity: 0.9;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.okbtn {
+    width: 100%;
+    color: black;
+    opacity: 0.9;
+    background-color: #ccc;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    background: #23bd5a;
+    font-weight: 700;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+/* Add padding and center-align text to the container */
+.container-1 {
+    padding: 16px;
+    text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 50% !important; /* Could be more or less, depending on screen size */
+}
