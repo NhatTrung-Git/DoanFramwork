@@ -1,0 +1,155 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Đăng ký </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/register.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="main">
+        <form method="POST" class="form" id="form-1">
+            <div class="form-group">
+                <input id="email" name="Customer_email" type="text" placeholder="VD: email@domain.com" class="form-control">
+                <span class="form-message" style="color:red">@ViewData["thongbao"] </span>
+            </div>
+            <div class="form-group">
+                <input id="fullname" name="Customer_name" type="text" placeholder="Nhập tên" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input id="diachi" name="Customer_address" type="text" placeholder="Nhập điạ chỉ" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input id="password" name="Customer_password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                <span class="eyes" onclick="Change()">
+                    <i id="show" class="far fa-eye pass"></i>
+                    <i id="hide" class="far fa-eye-slash pass"></i>
+                </span>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input id="confirmpassword" name="confirmpassword" type="password" placeholder="Xác nhận lại mật khẩu" class="form-control">
+                <span class="eyes" onclick="Change1()">
+                    <i id="show1" class="far fa-eye confirmpass"></i>
+                    <i id="hide1" class="far fa-eye-slash confirmpass"></i>
+                </span>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input id="phone" name="Customer_phone" type="tel" placeholder="09xxxxxxx" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="register">Đã có tài khoản ? <strong>Đăng nhập</strong></div>
+            <div class="button">
+                <input type="submit" class="btn form-submit color-white" value="Đăng ký">
+                <button type="button" class="btn color-white" onclick="window.location.href='/Home/Index'"><i class="fas fa-home icon"></i> Trang chủ</button>
+            </div>
+        </form>
+        <div class="img">
+            <img src="~/sprinting.png" class="img-responsive" />
+        </div>
+        <div id="modal-1" class="modal js-modal">
+            <form class="modal-content">
+                <div class="container-1">
+                    <h1>Thông báo đăng kí thành công</h1>
+                    <p>Chúc mừng bạn đã đăng kí tài khoản thành công tại website của chúng tôi!!</p>
+                    <div class="clearfix">
+                        <button type="button" class="okbtn">OK</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        const $ = document.querySelector.bind(document)
+        const $$ = document.querySelectorAll.bind(document)
+        const pass = $("#password")
+        const confirmpass = $("#confirmpassword")
+        const show = $("#show")
+        const hide = $("#hide")
+        const show1 = $("#show1")
+        const hide1 = $("#hide1")
+        function Change() {
+            if (pass.type === 'password') {
+                pass.type = 'text'
+                show.style.display = 'block'
+                hide.style.display = 'none'
+            }
+            else {
+                pass.type = 'password'
+                show.style.display = 'none'
+                hide.style.display = 'block'
+            }
+        }
+        function Change1() {
+            if (confirmpass.type === 'password') {
+                confirmpass.type = 'text'
+                show1.style.display = 'block'
+                hide1.style.display = 'none'
+            }
+            else {
+                confirmpass.type = 'password'
+                show1.style.display = 'none'
+                hide1.style.display = 'block'
+            }
+        }
+    </script>
+    <script type="text/javascript" src="~/js/validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-1',
+            errorForm: '.form-message',
+            rules: [
+                Validator.isRequired('#diachi'),
+                Validator.isMinLength('#password', 6),
+                Validator.isRequired('#confirmpassword'),
+                Validator.isRequired('#password'),
+                Validator.isRequired('#phone'),
+                Validator.isPhone('#phone'),
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.isConfirmed('#confirmpassword', function () {
+                    return document.querySelector('#form-1 #password').value
+                }, 'Vui lòng nhập lại password chính xác')
+            ],
+
+        });
+    </script>
+    <script>
+        const modal = $(".js-modal")
+        console.log(modal)
+        function open() {
+            modal.style.display = "flex"
+        }
+    </script>
+    <script>
+        function handleNotify() {
+            var modal1 = $('#modal-1');
+            const okBtn = $('.okbtn')
+            okBtn.addEventListener("click", function () {
+                modal1.style.display = "none"
+            })
+        }
+        handleNotify()
+    </script>
+    @if (ViewBag.JavaScriptFunction != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(ViewBag.JavaScriptFunction)
+        </script>
+    }
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Đăng nhập </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="main">
+        <form method="POST" action="@Url.Action("Index", "Home")" class="form" id="form-1">
+            <div class="form-group">
+                <input id="email" name="Email" type="email" placeholder="Email"
+                       class="form-control">
+                <span class="form-message" style="color:red">@ViewData["thongbao"]</span>
+            </div>
+            <div class="form-group">
+                <input id="password" name="Password" type="password" placeholder="Mật khẩu" class="form-control">
+                <span class="eyes" onclick="Change()">
+                    <i id="show" class="far fa-eye pass"></i>
+                    <i id="hide" class="far fa-eye-slash pass"></i>
+                </span>
+                <span class="form-message"></span>
+            </div>
+            <div class="register">Chưa có tài khoản ? <a href="@Url.Action("register", "tbl_customers")" class="text-dangky" ><strong>Đăng ký</strong></a></div>
+            <div class="button">
+                <input type="submit" class="btn form-submit color-white" value="Đăng nhập" />
+                <button type="button" class="btn color-white" onclick="window.location.href='/Home/Index'"><i class="fas fa-home icon"></i> Trang chủ</button>
+            </div>
+            </form>
+            <div class="img">
+                <img src="~/reading-side.png" class="img-responsive" />
+            </div>
+</div>
+</body>
+</html>
+<script>
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    const pass = $("#password")
+    const confirmpass = $("#confirmpassword")
+    const show = $("#show")
+    const hide = $("#hide")
+    const show1 = $("#show1")
+    const hide1 = $("#hide1")
+    function Change() {
+        if (pass.type === 'password') {
+            pass.type = 'text'
+            show.style.display = 'block'
+            hide.style.display = 'none'
+        }
+        else {
+            pass.type = 'password'
+            show.style.display = 'none'
+            hide.style.display = 'block'
+        }
+    }
+</script>
+<script type="text/javascript" src="~/js/validator.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        errorForm: '.form-message',
+        rules: [
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+            Validator.isRequired('#password'),
+            Validator.isMinLength('#password', 6),
+        ],
+
+    })
+</script>

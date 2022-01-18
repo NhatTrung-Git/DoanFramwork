@@ -1,0 +1,466 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sản phẩm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Thu vien bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- Thu vien font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Thu vien font family Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <!-- Thu vien font family Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Thu vien CSS bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Thu vien jquery -->
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+    <!-- Thu vien javascript bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="~/css/sanpham.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="~/js/sanpham.js"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <div id="head">
+        <div id="Thanh-navigation">
+            <div id="text-navigation" style="font-size: 18px;
+        padding-left: 4%;
+">
+                <a href="/Home/Index"> Home </a>
+                <a> Features </a>
+                <a> Pricing </a>
+                <a> Community </a>
+                <a> Support </a>
+                <a> Track your order </a>
+            </div>
+            <div id="btn-navigation" style="margin-left: 24%">
+                 @{
+                    if (@HttpContextAccessor.HttpContext.Session.GetInt32("_ID") != null)
+                    {
+                        <div class="text" style="font-size:22px">
+                            Xin chào
+                            <span onclick="window.location.href='/tbl_order/total_cart'" style="cursor: pointer; font-weight: 800;"> @HttpContextAccessor.HttpContext.Session.GetString("_Name")</span>
+                            <a style="margin-left: 10px;" href="/tbl_customers/Logout">Logout</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <button onclick="window.location.href='/tbl_customers/login'" type="button" id="btnlogin">Login</button>
+                        <button onclick="window.location.href='/tbl_customers/register'" type="button" id="btnregister">Register</button>
+                    }
+                }
+            </div>
+        </div>
+        <div id="thanh-search">
+            <input type="text" id="content__search" value="@ViewData["key"]">
+            <button type="submit" id="search"><i class="fa fa-search"></i></button>
+            <a id="cart" @(@HttpContextAccessor.HttpContext.Session.GetInt32("_ID") != null ? "href=/cart/cart?id=" + @HttpContextAccessor.HttpContext.Session.GetInt32("_ID")  : "href=/tbl_customers/login")><i class="fas fa-shopping-cart"></i> </a>
+        </div>
+    </div>
+     <div id="frame-content">
+       <!-- <div id="filter">
+            <h1 style="font-family: Roboto; font-style: normal; font-weight: normal; font-size: 5vh;"> BỘ LỌC TÌM KIẾM </h1>
+            <h3 style="font-family: Roboto;font-style: normal; font-weight: normal; font-size: 3vh; color: #4F4F4F; margin-bottom: 3vh;"> Nơi bán </h3>
+            <div class="frame-filter">
+                <div id="frame-checkbox-1">
+                    <input type="checkbox" value="TP.Hồ Chi Minh">
+                    <input type="checkbox" value="Hà Nội">
+                    <input type="checkbox" value="Quận 1">
+                    <input type="checkbox" value="Quận 2">
+                </div>
+                <div id="frame-label-1">
+                    <label> TP.Hồ Chí Minh </label>
+                    <label> Hà Nội </label>
+                    <label> Quận 1 </label>
+                    <label> Quận 2 </label>
+                </div>
+            </div>
+            <div class="frame-them" onclick="Toggleclass(this)"> <i class="fas fa-chevron-down fa-2x"></i> Thêm</div>
+            <hr width="100%" style="border-width: 0.1vw; margin-top: 8%; border-color: #979595;">
+            <h3 style="font-family: Roboto;font-style: normal; font-weight: normal; font-size: 3vh; color: #4F4F4F; margin-bottom: 3vh; margin-top: 0%;"> Đơn vị vận chuyển</h3>
+            <div class="frame-filter">
+                <div id="frame-checkbox-1">
+                    <input type="checkbox" value="Hỏa tốc">
+                    <input type="checkbox" value="Nhanh">
+                    <input type="checkbox" value="Tiết kiệm">
+                </div>
+                <div id="frame-label-1">
+                    <label> Hỏa tốc </label>
+                    <label> Nhanh </label>
+                    <label> Tiết kiệm </label> 
+                </div>
+            </div>
+            <hr width="100%" style="border-width: 0.1vw; margin-top: 8%; border-color: #979595;">
+            <h3 style="font-family: Roboto;font-style: normal; font-weight: normal; font-size: 3vh; color: #4F4F4F; margin-bottom: 3vh; margin-top: 0%;"> Thương hiệu </h3>
+            <div class="frame-filter">
+                <div id="frame-checkbox-1">
+                    <input type="checkbox" value="Sony">
+                    <input type="checkbox" value="LG">
+                    <input type="checkbox" value="Samsung">
+                    <input type="checkbox" value="Apple">
+                </div>
+                <div id="frame-label-1">
+                    <label> Sony </label>
+                    <label> LG </label>
+                    <label> Samsung </label>
+                    <label> Apple </label>
+                </div>
+            </div>
+            <div class="frame-them" onclick="Toggleclass(this)"> <i class="fas fa-chevron-down fa-2x"></i> Thêm</div>
+        </div> -->
+        <div id="content">
+            <div id="text-sanpham"> <label> Sản phẩm </label> </div>
+            <div style="overflow: auto; margin-top: 0; margin-left: 2vw; margin-right: 2vw;">
+                <table style="border-collapse: separate; border-spacing: 2vh;">
+                    <!-- <tr>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 2.png">
+                                <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 2.png">
+                                <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 2.png">
+                                <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 2.png">
+                                <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                    </tr> -->
+                   <!--  <tr>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 2.png" width="100%" height="300vh">
+                                <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                        <td class="row-table-san-pham">
+                            <a class="sanpham">
+                                <img src="image 9.png" width="100%" height="300vh">
+                                <p class="ten-sanpham"> [Bảo Hành 12 Tháng] ACOME AW01 Tai Nghe Nhét Tai Có... </p>
+                                <p class="dongia-sanpham"> ₫5500 </p>
+                            </a>
+                        </td>
+                      
+                    </tr> -->
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="frame-pagi">
+        <nav class="pagination-outer" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a id="Prev" class="page-link disabled" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <div class="page-number">
+                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" ><a class="page-link" href="#">2</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li> -->
+                </div>
+                <li class="page-item">
+                    <a id="Next" class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+<footer>
+    <div style="display: flex; flex-direction: column; align-items: center;"> 
+        <div id="foot-1"> 
+            <div id="text-row1-foot1"> 
+                <p id="text-product"> Product </p>
+                <p id="text-features"> Features </p>
+                <p id="text-resources"> Resources </p>
+                <p id="text-trade" style="font-size: 2.7vh; margin-left: 2vw; margin-right: 2vw;"> TRADE </p>
+                <p id="text-about"> About </p>
+                <p id="text-blog"> Blog </p>
+                <p id="text-support"> Support </p>
+            </div>
+            <hr width="75%" style="border-width: 0.1vw; border-color: black;">
+            <div id="text-row2-foot1">
+                <div class="eclipse"> </div>
+                <div class="eclipse"> </div>
+                <div class="eclipse"> </div>
+                <div class="eclipse"> </div>
+                <div class="eclipse"> </div>
+            </div>
+            <div id="text-row3-foot1">
+                <p id="text-nam"> © 2010 — 2020 </p>
+                <p id="text-privacy"> Privacy — Terms</p>
+            </div>
+        </div>
+        <div id="foot-2">
+            <div id="text-foot2-1"> 
+                <p style="margin-bottom: 5%; font-weight: bold; font-size: 3vh;"> TRADE </p>
+                <p> © 2010 — 2020 </p>
+                <p> Privacy — Terms </p>
+            </div>
+            <div id="text-foot2-2"> 
+                <p style="margin-bottom: 8.35%; font-weight: bold; font-size: 2vh;"> Contact Us </p>
+                <p> Hotline & Online chat (24/7) </p>
+                <p> Help Center </p>
+                <p> How to Buy </p>
+                <p> Shipping & Delivery </p>
+            </div>
+            <div id="text-foot2-3"> 
+                <p style="margin-bottom: 8.35%; font-weight: bold; font-size: 2vh;"> Features </p>
+                <p> Features </p>
+                <p> Features </p>
+                <p> Features </p>
+            </div>
+            <div id="text-foot2-4"> 
+                <p style="margin-bottom: 8.35%; font-weight: bold; font-size: 2vh;"> Resources </p>
+                <p> Resources </p>
+                <p> Resources </p>
+                <p> Resources </p>
+            </div>
+            <div id="text-foot2-5"> 
+                <p style="margin-bottom: 8.35%; font-weight: bold; font-size: 2vh;"> Company </p>
+                <p> Company </p>
+                <p> Company </p>
+                <p> Company </p>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
+<!-- <tr>
+    <td class="row-table-san-pham">
+        <a class="sanpham">
+            <img src="image 2.png" width="100%" height="300vh">
+            <p class="ten-sanpham"> [Game 1K kỳ diệu - Tham gia bằng ví ZaloPay - Mở... </p>
+            <p class="dongia-sanpham"> ₫5500 </p>
+        </a>
+    </td>
+    <td class="row-table-san-pham">
+        <a class="sanpham">
+            <img src="image 9.png" width="100%" height="300vh">
+            <p class="ten-sanpham"> [Bảo Hành 12 Tháng] ACOME AW01 Tai Nghe Nhét Tai Có... </p>
+            <p class="dongia-sanpham"> ₫5500 </p>
+        </a>
+    </td>
+    <td class="row-table-san-pham">
+        <a class="sanpham">
+            <img src="image 8.png" width="100%" height="300vh">
+            <p class="ten-sanpham"> [HCM]Set bộ thời trang nam phối sọc cá tính </p>
+            <p class="dongia-sanpham"> ₫5500 </p>
+        </a>
+    </td>
+    <td class="row-table-san-pham">
+        <a class="sanpham">
+            <img src="image 6.png" width="100%" height="300vh">
+            <p class="ten-sanpham"> Bộ đồ bé gái chất liệu thun dày mịn mát in hình 3D được các bé... </p>
+            <p class="dongia-sanpham"> ₫5500 </p>
+        </a>
+    </td>
+</tr> -->
+<script>
+    const products = @Html.Raw(Json.Serialize(ViewData["Listp"]));
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    let currentPage = 1;
+    let perPage = 2;
+    let start = 0;
+    let end = perPage;
+    let productArr = [];
+    productArr = products;
+    const nextBtn = $("#Next")
+    const prevBtn = $("#Prev")
+    const pageNumber = $(".page-number")
+    let totalPages = Math.ceil(productArr.length / (perPage*4))
+    function getCurrentPage(currentPage) {
+        start = (currentPage - 1) * perPage;
+        end = currentPage * perPage
+        totalPages =Math.ceil(productArr.length / (perPage*4))
+    }
+    function initRender(productAr, totalPage) {
+    renderProduct(productAr);
+    renderListPage(totalPage);
+    }
+
+    function renderProduct(productArr) {
+        let html = '';
+        for(let i=1;i<=Math.ceil(productArr.length/4);i++){
+            if(i-1>=start && i-1<end){
+                console.log(i)
+            html+='<tr>'
+                    if(i!=Math.ceil(productArr.length/4)|| productArr.length%4==0){
+                        for(j=(i-1)*4;j<((i-1)*4)+4;j++){
+
+                          html+= `<td class="row-table-san-pham">
+                            <a class="sanpham" href="/tbl_product/buyingpage?product_id=${productArr[j].product_id}">
+                                <img src="${productArr[j].product_image}" width="100%" height="300vh">
+                                <p class="ten-sanpham"> ${productArr[j].product_name}</p>
+                                <p class="dongia-sanpham"> ${productArr[j].product_price} </p>
+                            </a>
+                            </td>`
+
+                        }
+
+                    }
+                    else{
+                        for(j=(i-1)*4;j<((i-1)*4)+(productArr.length%4);j++){
+                     html+= `<td class="row-table-san-pham">
+                            <a class="sanpham" href="/tbl_product/buyingpage?product_id=${productArr[j].product_id}">
+                                <img src="${productArr[j].product_image}" width="100%" height="300vh">
+                                <p class="ten-sanpham"> ${productArr[j].product_name}</p>
+                                <p class="dongia-sanpham"> ${productArr[j].product_price} </p>
+                            </a>
+                            </td>`
+                }
+                }
+
+            html+='</tr>'
+            }
+
+        }
+        document.querySelector('table').innerHTML=html
+    }
+    function renderListPage(totalPages) {
+        let html = '';
+        html += `<li class="page-item active"><a class="page-link ">${1}</a></li>`
+        for (let i = 2; i <= totalPages; i++) {
+            html += `<li class="page-item"><a class="page-link" >${i}</a></li>`
+        }
+        pageNumber.innerHTML = html
+        if(totalPages<=1){
+            prevBtn.classList.add("disabled")
+            nextBtn.classList.add("disabled")
+        }
+    }
+    function changePage() {
+        const currentPages = $$('.page-number li')
+        for (let i = 0; i < currentPages.length; i++) {
+            currentPages[i].addEventListener('click', (e) => {
+                const value = i + 1;
+                currentPage = value;
+                let numberPage = $$(".page-number li")
+                for (let j of numberPage) {
+                    if (j.classList.contains("active")) {
+                        j.classList.remove("active");
+                    }
+                }
+                currentPages[i].classList.add('active')
+                if (currentPage > 1 && currentPage < totalPages) {
+                    prevBtn.classList.remove("disabled")
+                    nextBtn.classList.remove("disabled")
+                }
+                if (currentPage == 1) {
+                    prevBtn.classList.add("disabled")
+                    nextBtn.classList.remove("disabled")
+                }
+                if (currentPage == totalPages) {
+                    nextBtn.classList.add("disabled")
+                    prevBtn.classList.remove("disabled")
+                }
+                if(totalPages <= 1){
+                prevBtn.classList.add("disabled")
+                nextBtn.classList.add("disabled")
+                }
+                // currentPages[i].classList.add("active")
+                getCurrentPage(currentPage)
+                renderProduct(productArr)
+            })
+        }
+    }
+    initRender(productArr,totalPages)
+    changePage()
+    nextBtn.addEventListener('click', (e) => {
+        currentPage++;
+        if (currentPage > totalPages) {
+            currentPage = totalPages
+        }
+        if (currentPage == totalPages) {
+            nextBtn.classList.add("disabled")
+        }
+        prevBtn.classList.remove("disabled")
+        let numberPage = $$(".page-number li")
+        for (let j of numberPage) {
+            if (j.classList.contains("active")) {
+                j.classList.remove("active");
+            }
+        }
+        numberPage[currentPage - 1].classList.add('active')
+        getCurrentPage(currentPage)
+        renderProduct(productArr)
+
+    })
+    prevBtn.addEventListener('click', (e) => {
+        console.log(currentPage)
+        currentPage--;
+        if (currentPage <= 1) {
+            currentPage = 1
+        }
+        if (currentPage == 1) {
+            prevBtn.classList.add("disabled")
+        }
+        nextBtn.classList.remove("disabled")
+        let numberPage = $$(".page-number li")
+        for (let j of numberPage) {
+            if (j.classList.contains("active")) {
+                j.classList.remove("active");
+            }
+        }
+        numberPage[currentPage - 1].classList.add('active')
+        getCurrentPage(currentPage)
+        renderProduct(productArr)
+
+    })
+</script>
+<script>
+    const textToSearch = document.querySelector("#content__search")
+    const btnSearch = document.querySelector("#search")
+    btnSearch.addEventListener("click", () => {
+        jQuery.ajax({
+            url: '/tbl_product/SearchProductByKeyword',
+            dataType: "json",
+            type: "POST",
+            data: {
+                keyword: textToSearch.value,
+            },
+            success: function (data) {
+                initRender(data, Math.ceil(data.length / (perPage * 4)))
+            },
+        });
+    })
+</script>

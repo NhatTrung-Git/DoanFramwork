@@ -1,0 +1,147 @@
+﻿/* định dàng default */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* class color-white */
+.color-white {
+    color: #FFFFFF !important;
+}
+
+.form {
+    display: inline-block;
+    background-color: #B4EDFF;
+}
+/* html */
+html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    background-color: #B4EDFF;
+}
+
+/* form lớn */
+.main {
+    position: relative;
+    width: 1157px;
+    height: 437px;
+    margin: 40px auto;
+}
+
+/* form lớn */
+.form-group {
+    margin-top: 40px;
+}
+
+/* từng input form */
+.form-control {
+    margin-left: 10px;
+    height: 45px;
+    width: 450px;
+    outline: none;
+    background: #FFFFFF;
+    border: #FFFFFF;
+    padding: 8px 12px;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+/* div image */
+.img {
+    position: absolute;
+    display: inline-block;
+    margin-left: 6%;
+}
+
+/* thẻ img */
+.img-responsive {
+    max-width: 680px;
+    max-height: 470px;
+}
+
+/* chữ đăng kí */
+.register {
+    text-align: right;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+/* css nút  */
+.btn {
+    position: relative;
+    display: block;
+    background: #000000;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-size: 30px;
+    line-height: 35px;
+    width: 300px;
+    height: 50px;
+    margin-left: 80px;
+    margin-top: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+    /* rê vào nút xuất hiện con trỏ */
+    .btn:hover {
+        cursor: pointer;
+    }
+
+/* css text nhỏ nhỏ vd: Chưa có tài khoản ? Đăng ký */
+.text {
+    margin-left: 80px;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* css cho mấy icon trong button */
+.icon {
+    position: absolute;
+    background: #000000;
+    width: 30px;
+    height: 30px;
+    border-radius: 90%;
+    top: 18%;
+    left: 7px;
+}
+/* css chữ Đăng ký */
+.text-dangky {
+    text-decoration: none;
+    color: #000000;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+    display: block;
+    margin-left: 18px;
+    margin-top: 8px;
+}
+
+.eyes {
+    position: absolute;
+    transform: translate(0,-50%);
+    cursor: pointer;
+    margin-top: 23px;
+    margin-left: -40px;
+}
+
+#show {
+    display: none;
+}
+
+.fa-eye-slash.pass, .fa-eye.pass {
+    font-size: 25px;
+}

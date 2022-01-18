@@ -1,0 +1,487 @@
+﻿
+* {
+    font-family: 'Montserrat';
+    font-size: 20px;
+}
+
+b {
+    font-family: 'Montserrat-Bold';
+}
+
+/* header */
+/* main nav */
+
+.row-mainnav {
+    padding: 2px;
+}
+
+.btnnav {
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btnlogin {
+    background-color: #A8DBFE;
+    color: #18A0FB;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+#btnregister {
+    background-color: #18A0FB;
+    color: #A8DBFE;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+}
+
+.mainnav {
+    padding-left: 5%;
+    position: relative;
+    background: none !important;
+}
+
+    .mainnav a {
+        color: #18A0FB !important;
+        /* max-width: 200px; */
+    }
+
+/* search nav */
+.searchbar.search {
+    display: flex;
+    align-items: center;
+    /* background: red; */
+}
+
+.searchbar.cart {
+    /* width: max-content; */
+    justify-content: start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* background: pink; */
+}
+
+.searchbar.logo {
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    /* background: blue; */
+}
+
+    .searchbar.logo img {
+        width: 100%;
+        max-width: 100px;
+    }
+
+.searchbar.cart i {
+    position: r;
+    font-size: 30px;
+    color: black;
+    float: left;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group-btn .btn {
+    box-shadow: none;
+    font-size: 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.carousel-indicators [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 18px; /* change width */
+    height: 15px; /* change height */
+    padding: 0;
+    margin-right: 4px;
+    margin-left: 4px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+    border-radius: 100%; /* add border-radius */
+}
+
+.carousel-indicators button.active {
+    background-color: #2196F3;
+}
+
+.carousel-control-prev-icon.blue {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    width: 30px;
+    height: 48px;
+    float: left;
+}
+
+.carousel-control-next-icon.blue {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    width: 30px;
+    height: 48px;
+    float: right;
+}
+
+.btn-listcontent {
+    width: 100%;
+    height: 45px;
+    background: #FEACB8;
+    color: white;
+    border-style: none;
+    border-radius: 32.5px;
+}
+
+.btn-fls-viewmore {
+    text-decoration: none;
+    color: black;
+    font-style: italic;
+    font-size: 20px;
+    margin-top: -20px;
+    float: right;
+}
+
+.flashsalecontent {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 100%;
+    /* height: 100%; */
+    background: #FEACB8;
+    border-radius: 61px;
+    justify-content: center;
+    display: flex;
+}
+
+.flashsaletitle {
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    position: absolute;
+    width: 70%;
+    height: 55px;
+    background: #FBE061;
+    border-radius: 42.5px;
+}
+
+.title {
+    position: relative;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 61px;
+    display: flex;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+#categorylist .row {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+}
+
+.card.category {
+    position: relative;
+    width: 100%;
+    height: 98%;
+    align-items: center;
+    justify-content: center;
+    margin: 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.circleimg {
+    border-radius: 100%;
+    padding: 3px;
+    width: 5em;
+    height: 5em;
+}
+
+.card-img-top {
+    padding: 3%;
+    width: 100%;
+}
+
+.card.rectcard {
+    position: relative;
+    width: 100%;
+    height: 98%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#categorylist .col-lg {
+    text-decoration: none;
+    float: left;
+}
+
+.col-md.fls {
+    text-decoration: none;
+}
+
+.col-lg.sp {
+    text-decoration: none;
+}
+
+.card.rectcard span {
+    padding-inline-start: 1%;
+    padding-inline-end: 1%;
+    color: black;
+}
+
+.card.rectcard p {
+    color: red;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+.gridsp {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.arrows {
+    align-content: center;
+    margin: auto;
+    background-color: #c4c4c4;
+    width: fit-content;
+    height: fit-content;
+}
+
+.btnviewmore {
+    background-color: black;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    width: 250px;
+    height: 40px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+hr {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 0;
+    border-top: 1px solid black;
+    width: 80%;
+}
+
+.btn.footer {
+    float: left;
+    margin-left: -15px;
+}
+
+.contactlinefooter {
+    flex-direction: column;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contactfooter {
+    text-align: left;
+}
+
+@media (max-width: 576px) {
+
+    .titlepart {
+        font-size: 25px;
+    }
+
+    .btnnav {
+        display: flex;
+        justify-content: end;
+    }
+
+
+    .searchbar.cart {
+        display: none;
+    }
+
+
+    .flashsalecontent .col-md.fls {
+        /* width: 50%; */
+    }
+
+    .gridsp {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .col-md.sp {
+        width: 100%;
+    }
+
+    .stickercat {
+        width: 45%;
+    }
+
+    .socialfooter {
+        text-align: center;
+    }
+
+    .contactfooter {
+        text-align: center;
+    }
+
+    .contactlinefooter {
+        text-align: left;
+        flex: row;
+        margin-left: 15px;
+    }
+
+    #categorylist .row {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .searchbar.logo {
+        display: none;
+    }
+
+    .searchbar.search {
+        /* width: 90%; */
+    }
+
+    .searchbar.cart {
+        width: 10%;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+
+    .searchbar.logo {
+        /* display: none; */
+    }
+
+    .btnnav {
+        justify-content: end;
+        /* display: block; */
+        /* margin-left: 10%; */
+    }
+
+    .flashsalecontent .col-md.fls {
+        width: 50%;
+    }
+
+    .gridsp {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stickercat {
+        width: 35%;
+    }
+
+    .socialfooter {
+        text-align: center;
+    }
+
+    .contactfooter {
+        text-align: center;
+    }
+
+    .contactlinefooter {
+        text-align: left;
+        flex-direction: row;
+        margin-left: 15px;
+    }
+
+    #categorylist .row {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+
+    .gridsp {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stickercat {
+        width: 25%;
+    }
+
+    .contactfooter {
+        text-align: center;
+    }
+
+    .contactlinefooter {
+        text-align: left;
+        flex-direction: row;
+        margin-left: 10px;
+    }
+
+    #categorylist .row {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* them sau */
+
+.boxflashsale {
+    height: 100%;
+    background-color: #B4EDFF;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.close {
+    display: none !important;
+}
+
+.image {
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    max-width: 25%;
+    min-width: 25%;
+}
+
+.text {
+    margin-top: 15px;
+    margin-left: 20px;
+}
